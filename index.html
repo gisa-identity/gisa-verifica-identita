@@ -4,71 +4,591 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>G.I.S.A. – Verifica Ufficiale Identità</title>
+
   <style>
-    body {
+    :root {
+      --bg: #050814;
+      --bg-deep: #02040c;
+      --card: #0b1020;
+      --card-soft: #11172b;
+      --primary: #00b4ff;
+      --primary-soft: #1b6cff;
+      --accent: #ffd700;
+      --success: #24d58a;
+      --danger: #ff4b5c;
+      --text: #f5f7ff;
+      --muted: #9aa4c6;
+      --border: #202a40;
+      --shadow-strong: 0 24px 50px rgba(0, 0, 0, 0.75);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at top, #0a1224, #050a16);
-      color: #dbe7ff;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0, #1b315f 0, transparent 55%),
+        radial-gradient(circle at 90% 100%, #041d3d 0, transparent 55%),
+        linear-gradient(160deg, var(--bg) 0, var(--bg-deep) 55%, #020208 100%);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 20px;
+      justify-content: center;
+      padding: 24px;
     }
+
+    .frame {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      padding: 2px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(0, 180, 255, 0.9), rgba(0, 180, 255, 0)),
+        linear-gradient(315deg, rgba(255, 215, 0, 0.8), rgba(0, 0, 0, 0));
+      box-shadow: var(--shadow-strong);
+      overflow: hidden;
+    }
+
+    .frame::before {
+      /* linea di scansione tipo laser */
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(0, 180, 255, 0.15), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.4;
+      animation: scan 9s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      0% {
+        transform: translate3d(-40%, -40%, 0);
+      }
+      50% {
+        transform: translate3d(40%, 40%, 0);
+      }
+      100% {
+        transform: translate3d(-40%, -40%, 0);
+      }
+    }
+
     .card {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 30px;
+      position: relative;
+      background: radial-gradient(circle at top, #151c32 0, #090e1b 55%, #050814 100%);
       border-radius: 20px;
-      max-width: 420px;
-      box-shadow: 0 0 30px rgba(0, 153, 255, 0.3);
-      backdrop-filter: blur(6px);
+      padding: 28px 24px 26px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 1;
+      overflow: hidden;
     }
-    h1 {
-      font-size: 1.7rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      letter-spacing: 0.5px;
+
+    .card::after {
+      /* texture di sicurezza tipo micro-stampa */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          -120deg,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px
+        );
+      background-size: 7px 7px;
+      mix-blend-mode: soft-light;
+      opacity: 0.6;
+      pointer-events: none;
     }
-    .logo {
-      color: #5ab8ff;
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: 6px;
+
+    .card-inner {
+      position: relative;
+      z-index: 2;
     }
-    p {
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .badge-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .emblem {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ffffff 0, #c7e8ff 22%, #004c93 52%, #021837 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.85),
+        0 0 0 5px rgba(0, 180, 255, 0.35),
+        0 10px 22px rgba(0, 0, 0, 0.85);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .emblem::after {
+      content: "";
+      position: absolute;
+      inset: 16%;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
+    }
+
+    .emblem span {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      color: #021126;
+      text-shadow:
+        0 0 2px rgba(255, 255, 255, 0.7),
+        0 0 8px rgba(255, 255, 255, 0.7);
+    }
+
+    .agency-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .agency-code {
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .agency-name {
+      font-size: 11px;
+      letter-spacing: 0.23em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .badge-right {
+      text-align: right;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+    }
+
+    .badge-right span {
+      display: block;
+    }
+
+    .badge-right .tag {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .title-block {
+      margin-bottom: 18px;
+    }
+
+    .title-block h1 {
+      font-size: 20px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .title-block h1 span {
+      display: block;
+      font-size: 12px;
+      color: var(--primary);
+      letter-spacing: 0.3em;
+    }
+
+    .title-block p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .divider {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 0,
+        rgba(0, 180, 255, 0.5) 20%,
+        rgba(255, 215, 0, 0.5) 80%,
+        transparent 100%
+      );
+      margin: 14px 0 16px;
+      position: relative;
+    }
+
+    .divider::after {
+      content: "CLEARANCE LEVEL • INTERNAL USE ONLY";
+      position: absolute;
+      top: -10px;
+      right: 0;
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(154, 164, 198, 0.75);
+      background: radial-gradient(circle at 0 50%, rgba(5, 8, 20, 0.9), transparent 70%);
+      padding-left: 12px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .field-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .field-label span {
+      color: var(--primary);
+    }
+
+    .field-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .field-row input {
+      flex: 1;
+      padding: 10px 11px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, #161d33 0, #070b14 62%);
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+      box-shadow:
+        inset 0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(0, 0, 0, 0.6);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .field-row input::placeholder {
+      color: rgba(154, 164, 198, 0.9);
+    }
+
+    .field-row input:focus {
+      border-color: rgba(0, 180, 255, 0.85);
+      box-shadow:
+        0 0 0 1px rgba(0, 180, 255, 0.7),
+        0 0 18px rgba(0, 180, 255, 0.35);
+      background: radial-gradient(circle at top left, #18233d 0, #050814 62%);
+    }
+
+    button {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 12px 28px rgba(0, 0, 0, 0.95),
+        0 0 22px rgba(0, 180, 255, 0.52);
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        filter 0.15s ease;
+      white-space: nowrap;
+    }
+
+    button span.arrow {
+      font-size: 15px;
+      margin-top: -1px;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 1),
+        0 16px 32px rgba(0, 0, 0, 1),
+        0 0 26px rgba(0, 180, 255, 0.8);
+      filter: brightness(1.05);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 1),
+        0 10px 20px rgba(0, 0, 0, 0.9),
+        0 0 16px rgba(0, 180, 255, 0.6);
+      filter: brightness(0.97);
+    }
+
+    .result {
+      border-radius: 12px;
+      padding: 11px 12px;
+      font-size: 12px;
+      line-height: 1.55;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      background: linear-gradient(
+        145deg,
+        rgba(9, 15, 34, 0.9),
+        rgba(6, 12, 25, 0.95)
+      );
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.7);
+      min-height: 42px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--muted);
+    }
+
+    .result-icon {
+      margin-top: 1px;
+      font-size: 16px;
+    }
+
+    .result--success {
+      border-color: rgba(36, 213, 138, 0.55);
+      background: radial-gradient(circle at 0 0, rgba(23, 110, 72, 0.65), transparent 55%),
+        linear-gradient(145deg, #071815, #050814);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.95),
+        0 10px 24px rgba(0, 0, 0, 0.9),
+        0 0 22px rgba(36, 213, 138, 0.4);
+      color: #e4fff2;
+    }
+
+    .result--error {
+      border-color: rgba(255, 75, 92, 0.6);
+      background: radial-gradient(circle at 0 0, rgba(112, 17, 30, 0.75), transparent 55%),
+        linear-gradient(145deg, #18070b, #050814);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.95),
+        0 10px 24px rgba(0, 0, 0, 0.9),
+        0 0 22px rgba(255, 75, 92, 0.4);
+      color: #ffeef1;
+    }
+
+    .result strong {
+      font-weight: 600;
+    }
+
+    .result small {
+      font-size: 11px;
       opacity: 0.9;
-      font-size: 1rem;
-      margin-bottom: 30px;
     }
-    a.button {
-      display: inline-block;
-      background: #37a8ff;
-      padding: 14px 24px;
-      color: #00101e;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: 0.2s;
-      box-shadow: 0 0 15px rgba(0, 153, 255, 0.4);
+
+    .footer-note {
+      margin-top: 12px;
+      font-size: 10px;
+      color: rgba(154, 164, 198, 0.8);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
     }
-    a.button:hover {
-      background: #5bc1ff;
-      box-shadow: 0 0 20px rgba(91, 193, 255, 0.6);
+
+    .footer-note span {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 22px 18px 20px;
+      }
+
+      .badge-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .badge-right {
+        text-align: left;
+      }
+
+      .title-block h1 {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <div class="logo">G.I.S.A.</div>
-    <h1>Verifica Ufficiale Identità</h1>
-    <p>Portale dedicato alla validazione dei tesserini.</p>
-    <a href="#" class="button">Avvia verifica identità →</a>
+  <div class="frame">
+    <div class="card">
+      <div class="card-inner">
+        <!-- intestazione agenzia -->
+        <div class="badge-row">
+          <div class="badge-left">
+            <div class="emblem">
+              <span>G.I.S.A.</span>
+            </div>
+            <div class="agency-label">
+              <div class="agency-code">G.I.S.A.</div>
+              <div class="agency-name">
+                GLOBAL INTELLIGENCE &amp; SECURITY AGENCY
+              </div>
+            </div>
+          </div>
+
+          <div class="badge-right">
+            <span>IDENTITY CHECK PORTAL</span>
+            <span class="tag">OFFICIAL USE</span>
+          </div>
+        </div>
+
+        <!-- titolo -->
+        <div class="title-block">
+          <h1>
+            <span>UNITÀ CREDENZIALI</span>
+            Verifica Ufficiale Identità
+          </h1>
+          <p>Portale dedicato alla validazione dei tesserini di servizio
+            G.I.S.A.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- form di verifica -->
+        <form id="verifyForm">
+          <div class="field-label">
+            <span>Step 1</span> • Inserire ID prefettizio per la verifica
+          </div>
+
+          <div class="field-row">
+            <input
+              type="text"
+              id="idNumber"
+              autocomplete="off"
+              placeholder="Es: 15FE012414"
+              inputmode="latin"
+            />
+            <button type="submit">
+              Avvia verifica
+              <span class="arrow">➜</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- risultato -->
+        <div id="result" class="result">
+          <div class="result-icon">ℹ️</div>
+          <div>
+            <strong>In attesa di richiesta.</strong><br />
+            <small>Inserisci un ID prefettizio per avviare la verifica
+              dell’identità.</small>
+          </div>
+        </div>
+
+        <!-- footer -->
+        <div class="footer-note">
+          <span>G.I.S.A. INTERNAL NETWORK</span>
+          <span>LOG ID • GISA-IDENTITY</span>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script>
+    // archivio ID validi
+    const KNOWN_IDS = {
+      "15FE012414": {
+        nome: "Giuliano",
+        cognome: "Macrì",
+        ruolo: "Operatore scelto 1° grado",
+        ente: "G.I.S.A. – Global Intelligence & Security Agency",
+        note: "Iscrizione Prefettura Ferrara"
+      }
+      // qui in futuro puoi aggiungere altri ID
+      // "ALTROCODICE": { ... }
+    };
+
+    const form = document.getElementById("verifyForm");
+    const input = document.getElementById("idNumber");
+    const resultBox = document.getElementById("result");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const rawValue = input.value.trim().toUpperCase();
+
+      if (!rawValue) {
+        showError("Nessun ID inserito.", "Inserisci un ID prefettizio per procedere con la verifica.");
+        return;
+      }
+
+      const record = KNOWN_IDS[rawValue];
+
+      if (record) {
+        showSuccess(record, rawValue);
+      } else {
+        showError(
+          "ID non presente negli archivi G.I.S.A.",
+          "Verifica che il codice inserito sia corretto. In caso di dubbio contatta l’ufficio competente."
+        );
+      }
+    });
+
+    function showSuccess(record, id) {
+      resultBox.className = "result result--success";
+      resultBox.innerHTML = `
+        <div class="result-icon">✅</div>
+        <div>
+          <strong>Identità verificata.</strong><br />
+          ID Prefettizio: <strong>${id}</strong><br />
+          Nominativo: <strong>${record.nome} ${record.cognome}</strong><br />
+          Ruolo: <strong>${record.ruolo}</strong><br />
+          Ente: <strong>${record.ente}</strong><br />
+          <small>${record.note}</small>
+        </div>
+      `;
+    }
+
+    function showError(title, message) {
+      resultBox.className = "result result--error";
+      resultBox.innerHTML = `
+        <div class="result-icon">⚠️</div>
+        <div>
+          <strong>${title}</strong><br />
+          <small>${message}</small>
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>

@@ -590,5 +590,30 @@
       `;
     }
   </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+    // Legge i parametri dall'URL
+    const params = new URLSearchParams(window.location.search);
+    const idFromUrl = params.get('id');
+
+    if (idFromUrl) {
+        const input = document.getElementById('idNumber');
+        const form  = document.getElementById('verifyForm');
+
+        if (input && form) {
+            input.value = idFromUrl;
+
+            // Simula il click esattamente come un utente
+            const event = new Event('submit', {
+                bubbles: true,
+                cancelable: true
+            });
+            form.dispatchEvent(event);
+        }
+    }
+});
+</script>
+
 </body>
 </html>

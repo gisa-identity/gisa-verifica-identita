@@ -1,619 +1,650 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>G.I.S.A. – Verifica Ufficiale Identità</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>G.I.S.A. – Verifica ufficiale identità</title>
+<meta name="description" content="Portale ufficiale di verifica tesserini G.I.S.A.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg: #050814;
-      --bg-deep: #02040c;
-      --card: #0b1020;
-      --card-soft: #11172b;
-      --primary: #00b4ff;
-      --primary-soft: #1b6cff;
-      --accent: #ffd700;
-      --success: #24d58a;
-      --danger: #ff4b5c;
-      --text: #f5f7ff;
-      --muted: #9aa4c6;
-      --border: #202a40;
-      --shadow-strong: 0 24px 50px rgba(0, 0, 0, 0.75);
-    }
+<style>
+:root {
+--bg: #05070c;
+--bg-card: #0f1119;
+--accent: #f5c451;
+--accent-soft: rgba(245,196,81,0.22);
+--text: #f4f4f4;
+--muted: #a1a5bb;
+--danger: #ff4d4d;
+--success: #2ecc71;
+--border-radius: 16px;
+--shadow-soft: 0 20px 50px rgba(0,0,0,0.65);
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 10% 0, #1b315f 0, transparent 55%),
-        radial-gradient(circle at 90% 100%, #041d3d 0, transparent 55%),
-        linear-gradient(160deg, var(--bg) 0, var(--bg-deep) 55%, #020208 100%);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
+body {
+font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+min-height: 100vh;
+background:
+radial-gradient(circle at top, #242b5c 0, #05070c 45%, #000 100%);
+color: var(--text);
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 24px 12px;
+}
 
-    .frame {
-      position: relative;
-      width: 100%;
-      max-width: 460px;
-      padding: 2px;
-      border-radius: 22px;
-      background:
-        linear-gradient(135deg, rgba(0, 180, 255, 0.9), rgba(0, 180, 255, 0)),
-        linear-gradient(315deg, rgba(255, 215, 0, 0.8), rgba(0, 0, 0, 0));
-      box-shadow: var(--shadow-strong);
-      overflow: hidden;
-    }
+.page {
+width: 100%;
+max-width: 980px;
+margin: 0 auto;
+}
 
-    .frame::before {
-      /* linea di scansione tipo laser */
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 0 0, rgba(0, 180, 255, 0.15), transparent 55%);
-      mix-blend-mode: screen;
-      opacity: 0.4;
-      animation: scan 9s linear infinite;
-      pointer-events: none;
-    }
+header {
+text-align: center;
+margin-bottom: 26px;
+}
 
-    @keyframes scan {
-      0% {
-        transform: translate3d(-40%, -40%, 0);
-      }
-      50% {
-        transform: translate3d(40%, 40%, 0);
-      }
-      100% {
-        transform: translate3d(-40%, -40%, 0);
-      }
-    }
+.badge-row {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 6px 14px;
+border-radius: 999px;
+background: linear-gradient(135deg, rgba(245,196,81,0.3), rgba(7,9,18,0.95));
+border: 1px solid rgba(245,196,81,0.5);
+font-size: 11px;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: var(--muted);
+margin-bottom: 10px;
+}
 
-    .card {
-      position: relative;
-      background: radial-gradient(circle at top, #151c32 0, #090e1b 55%, #050814 100%);
-      border-radius: 20px;
-      padding: 28px 24px 26px;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      z-index: 1;
-      overflow: hidden;
-    }
+.flag {
+width: 20px;
+height: 13px;
+border-radius: 2px;
+overflow: hidden;
+box-shadow: 0 0 0 1px rgba(0,0,0,0.6);
+}
 
-    .card::after {
-      /* texture di sicurezza tipo micro-stampa */
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(
-          120deg,
-          rgba(255, 255, 255, 0.03) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          -120deg,
-          rgba(255, 255, 255, 0.03) 1px,
-          transparent 1px
-        );
-      background-size: 7px 7px;
-      mix-blend-mode: soft-light;
-      opacity: 0.6;
-      pointer-events: none;
-    }
+.flag-eu {
+background:
+radial-gradient(circle at 50% 22%, #ffd700 0 1px, transparent 2px),
+radial-gradient(circle at 36% 36%, #ffd700 0 1px, transparent 2px),
+radial-gradient(circle at 64% 36%, #ffd700 0 1px, transparent 2px),
+radial-gradient(circle at 32% 52%, #ffd700 0 1px, transparent 2px),
+radial-gradient(circle at 68% 52%, #ffd700 0 1px, transparent 2px),
+radial-gradient(circle at 36% 68%, #ffd700 0 1px, transparent 2px),
+radial-gradient(circle at 64% 68%, #ffd700 0 1px, transparent 2px),
+radial-gradient(circle at 50% 80%, #ffd700 0 1px, transparent 2px),
+#1b2a7a;
+}
 
-    .card-inner {
-      position: relative;
-      z-index: 2;
-    }
+.flag-it {
+background: linear-gradient(90deg,
+#009246 0 33%, #ffffff 33% 66%, #ce2b37 66% 100%);
+}
 
-    .badge-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
+h1 {
+font-size: clamp(1.8rem, 3.1vw, 2.2rem);
+font-weight: 700;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+margin-bottom: 6px;
+}
 
-    .badge-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+.subtitle {
+font-size: 0.95rem;
+color: var(--muted);
+max-width: 600px;
+margin: 0 auto;
+}
 
-    .emblem {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 20%, #ffffff 0, #c7e8ff 22%, #004c93 52%, #021837 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow:
-        0 0 0 2px rgba(0, 0, 0, 0.85),
-        0 0 0 5px rgba(0, 180, 255, 0.35),
-        0 10px 22px rgba(0, 0, 0, 0.85);
-      position: relative;
-      overflow: hidden;
-    }
+main {
+display: grid;
+grid-template-columns: minmax(0, 3fr) minmax(0, 2.1fr);
+gap: 18px;
+}
 
-    .emblem::after {
-      content: "";
-      position: absolute;
-      inset: 16%;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
-    }
+@media (max-width: 780px) {
+main {
+grid-template-columns: minmax(0, 1fr);
+}
+}
 
-    .emblem span {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-align: center;
-      color: #021126;
-      text-shadow:
-        0 0 2px rgba(255, 255, 255, 0.7),
-        0 0 8px rgba(255, 255, 255, 0.7);
-    }
+.card {
+position: relative;
+background:
+radial-gradient(circle at top left, rgba(245,196,81,0.12), transparent 55%),
+radial-gradient(circle at bottom right, rgba(20,26,56,0.9), rgba(4,5,10,0.96));
+border-radius: var(--border-radius);
+padding: 20px 18px 18px;
+box-shadow: var(--shadow-soft);
+border: 1px solid rgba(245,196,81,0.28);
+overflow: hidden;
+}
 
-    .agency-label {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+.card::before {
+content: "";
+position: absolute;
+inset: 0;
+background-image:
+linear-gradient(125deg, rgba(245,196,81,0.12), transparent 40%, transparent 60%, rgba(245,196,81,0.08)),
+repeating-linear-gradient(135deg,
+rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px,
+transparent 1px, transparent 3px);
+mix-blend-mode: soft-light;
+opacity: 0.55;
+pointer-events: none;
+}
 
-    .agency-code {
-      font-size: 13px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--primary);
-      font-weight: 600;
-    }
+.card-inner {
+position: relative;
+z-index: 1;
+}
 
-    .agency-name {
-      font-size: 11px;
-      letter-spacing: 0.23em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+.card-title {
+font-size: 1.02rem;
+text-transform: uppercase;
+letter-spacing: 0.12em;
+margin-bottom: 6px;
+}
 
-    .badge-right {
-      text-align: right;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: var(--muted);
-    }
+.card-sub {
+font-size: 0.84rem;
+color: var(--muted);
+margin-bottom: 16px;
+}
 
-    .badge-right span {
-      display: block;
-    }
+.field-group {
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-bottom: 16px;
+}
 
-    .badge-right .tag {
-      color: var(--accent);
-      font-weight: 600;
-    }
+label {
+font-size: 0.76rem;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: var(--muted);
+}
 
-    .title-block {
-      margin-bottom: 18px;
-    }
+input {
+width: 100%;
+padding: 9px 11px;
+border-radius: 9px;
+background: rgba(0,0,0,0.5);
+border: 1px solid rgba(245,196,81,0.38);
+color: var(--text);
+font-size: 0.9rem;
+outline: none;
+transition: border 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
 
-    .title-block h1 {
-      font-size: 20px;
-      line-height: 1.2;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
+input::placeholder {
+color: rgba(161,165,187,0.7);
+}
 
-    .title-block h1 span {
-      display: block;
-      font-size: 12px;
-      color: var(--primary);
-      letter-spacing: 0.3em;
-    }
+input:focus {
+border-color: var(--accent);
+box-shadow: 0 0 0 1px rgba(245,196,81,0.4);
+background: rgba(0,0,0,0.75);
+}
 
-    .title-block p {
-      font-size: 13px;
-      color: var(--muted);
-    }
+button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 6px;
+padding: 9px 16px;
+border-radius: 999px;
+border: none;
+cursor: pointer;
+font-size: 0.88rem;
+font-weight: 600;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+background: linear-gradient(135deg, #f5c451, #f2a933);
+color: #1c1507;
+box-shadow: 0 12px 26px rgba(0,0,0,0.6);
+transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
 
-    .divider {
-      height: 1px;
-      width: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent 0,
-        rgba(0, 180, 255, 0.5) 20%,
-        rgba(255, 215, 0, 0.5) 80%,
-        transparent 100%
-      );
-      margin: 14px 0 16px;
-      position: relative;
-    }
+button:hover {
+transform: translateY(-1px);
+box-shadow: 0 16px 35px rgba(0,0,0,0.7);
+filter: brightness(1.05);
+}
 
-    .divider::after {
-      content: "CLEARANCE LEVEL • INTERNAL USE ONLY";
-      position: absolute;
-      top: -10px;
-      right: 0;
-      font-size: 9px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(154, 164, 198, 0.75);
-      background: radial-gradient(circle at 0 50%, rgba(5, 8, 20, 0.9), transparent 70%);
-      padding-left: 12px;
-    }
+button:active {
+transform: translateY(0);
+box-shadow: 0 8px 18px rgba(0,0,0,0.7);
+filter: brightness(0.97);
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
+.btn-icon {
+font-size: 1rem;
+}
 
-    .field-label {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
+.status-pill {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+padding: 4px 10px;
+border-radius: 999px;
+font-size: 0.74rem;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+margin-bottom: 10px;
+}
 
-    .field-label span {
-      color: var(--primary);
-    }
+.status-pill--idle {
+background: rgba(255,255,255,0.05);
+color: var(--muted);
+border: 1px solid rgba(255,255,255,0.08);
+}
 
-    .field-row {
-      display: flex;
-      gap: 8px;
-    }
+.status-pill--ok {
+background: rgba(46,204,113,0.1);
+color: var(--success);
+border: 1px solid rgba(46,204,113,0.6);
+}
 
-    .field-row input {
-      flex: 1;
-      padding: 10px 11px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at top left, #161d33 0, #070b14 62%);
-      color: var(--text);
-      font-size: 13px;
-      outline: none;
-      box-shadow:
-        inset 0 0 0 1px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(0, 0, 0, 0.6);
-      transition: border-color 0.18s ease, box-shadow 0.18s ease,
-        background 0.18s ease;
-    }
+.status-pill--fail {
+background: rgba(255,77,77,0.1);
+color: var(--danger);
+border: 1px solid rgba(255,77,77,0.65);
+}
 
-    .field-row input::placeholder {
-      color: rgba(154, 164, 198, 0.9);
-    }
+.result-box {
+margin-top: 10px;
+padding: 12px 12px 10px;
+border-radius: 10px;
+background: rgba(5,7,16,0.85);
+border: 1px solid rgba(255,255,255,0.06);
+font-size: 0.84rem;
+line-height: 1.35;
+}
 
-    .field-row input:focus {
-      border-color: rgba(0, 180, 255, 0.85);
-      box-shadow:
-        0 0 0 1px rgba(0, 180, 255, 0.7),
-        0 0 18px rgba(0, 180, 255, 0.35);
-      background: radial-gradient(circle at top left, #18233d 0, #050814 62%);
-    }
+.result-title {
+font-weight: 600;
+margin-bottom: 4px;
+}
 
-    button {
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: none;
-      background: linear-gradient(135deg, var(--primary), var(--primary-soft));
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.9),
-        0 12px 28px rgba(0, 0, 0, 0.95),
-        0 0 22px rgba(0, 180, 255, 0.52);
-      transition: transform 0.15s ease, box-shadow 0.15s ease,
-        filter 0.15s ease;
-      white-space: nowrap;
-    }
+.result-grid {
+display: grid;
+grid-template-columns: auto 1fr;
+column-gap: 12px;
+row-gap: 3px;
+font-size: 0.8rem;
+margin-top: 6px;
+}
 
-    button span.arrow {
-      font-size: 15px;
-      margin-top: -1px;
-    }
+.result-label {
+text-transform: uppercase;
+letter-spacing: 0.12em;
+color: var(--muted);
+font-size: 0.7rem;
+}
 
-    button:hover {
-      transform: translateY(-1px);
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 1),
-        0 16px 32px rgba(0, 0, 0, 1),
-        0 0 26px rgba(0, 180, 255, 0.8);
-      filter: brightness(1.05);
-    }
+.result-value {
+font-weight: 500;
+}
 
-    button:active {
-      transform: translateY(0);
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 1),
-        0 10px 20px rgba(0, 0, 0, 0.9),
-        0 0 16px rgba(0, 180, 255, 0.6);
-      filter: brightness(0.97);
-    }
+.side-card {
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
 
-    .result {
-      border-radius: 12px;
-      padding: 11px 12px;
-      font-size: 12px;
-      line-height: 1.55;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      background: linear-gradient(
-        145deg,
-        rgba(9, 15, 34, 0.9),
-        rgba(6, 12, 25, 0.95)
-      );
-      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.7);
-      min-height: 42px;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      color: var(--muted);
-    }
+.seal {
+display: inline-flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 4px;
+width: 130px;
+height: 130px;
+margin: 0 auto 4px;
+border-radius: 50%;
+background:
+radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 55%),
+conic-gradient(from 200deg,
+#f5c451 0 30%, #b8861b 30% 60%, #f5c451 60% 100%);
+position: relative;
+box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
 
-    .result-icon {
-      margin-top: 1px;
-      font-size: 16px;
-    }
+.seal::before {
+content: "";
+position: absolute;
+inset: 9px;
+border-radius: 50%;
+border: 2px solid rgba(0,0,0,0.6);
+background:
+radial-gradient(circle at top, rgba(0,0,0,0.3), transparent 60%),
+#111319;
+}
 
-    .result--success {
-      border-color: rgba(36, 213, 138, 0.55);
-      background: radial-gradient(circle at 0 0, rgba(23, 110, 72, 0.65), transparent 55%),
-        linear-gradient(145deg, #071815, #050814);
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.95),
-        0 10px 24px rgba(0, 0, 0, 0.9),
-        0 0 22px rgba(36, 213, 138, 0.4);
-      color: #e4fff2;
-    }
+.seal-inner {
+position: relative;
+z-index: 1;
+text-align: center;
+padding: 10px;
+}
 
-    .result--error {
-      border-color: rgba(255, 75, 92, 0.6);
-      background: radial-gradient(circle at 0 0, rgba(112, 17, 30, 0.75), transparent 55%),
-        linear-gradient(145deg, #18070b, #050814);
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.95),
-        0 10px 24px rgba(0, 0, 0, 0.9),
-        0 0 22px rgba(255, 75, 92, 0.4);
-      color: #ffeef1;
-    }
+.seal-text-small {
+font-size: 0.53rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--muted);
+}
 
-    .result strong {
-      font-weight: 600;
-    }
+.seal-text-main {
+font-size: 0.74rem;
+font-weight: 700;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+}
 
-    .result small {
-      font-size: 11px;
-      opacity: 0.9;
-    }
+.seal-divider {
+width: 40px;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(--accent), transparent);
+margin: 5px auto;
+}
 
-    .footer-note {
-      margin-top: 12px;
-      font-size: 10px;
-      color: rgba(154, 164, 198, 0.8);
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-    }
+.note {
+font-size: 0.76rem;
+color: var(--muted);
+line-height: 1.4;
+}
 
-    .footer-note span {
-      white-space: nowrap;
-    }
+.note-strong {
+font-weight: 600;
+color: #d5d8ec;
+}
 
-    @media (max-width: 480px) {
-      .card {
-        padding: 22px 18px 20px;
-      }
+footer {
+margin-top: 18px;
+text-align: center;
+font-size: 0.7rem;
+color: var(--muted);
+opacity: 0.9;
+}
 
-      .badge-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
+.monosmall {
+font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+font-size: 0.78rem;
+}
 
-      .badge-right {
-        text-align: left;
-      }
+.highlight {
+color: var(--accent);
+}
 
-      .title-block h1 {
-        font-size: 18px;
-      }
-    }
-  </style>
+.divider {
+height: 1px;
+margin: 10px 0 8px;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+opacity: 0.6;
+}
+</style>
 </head>
 
 <body>
-  <div class="frame">
-    <div class="card">
-      <div class="card-inner">
-        <!-- intestazione agenzia -->
-        <div class="badge-row">
-          <div class="badge-left">
-            <div class="emblem">
-              <span>G.I.S.A.</span>
-            </div>
-            <div class="agency-label">
-              <div class="agency-code">G.I.S.A.</div>
-              <div class="agency-name">
-                GLOBAL INTELLIGENCE &amp; SECURITY AGENCY
-              </div>
-            </div>
-          </div>
+<div class="page">
+<header>
+<div class="badge-row">
+<div class="flag flag-eu"></div>
+<span>Global Intelligence &amp; Security Agency</span>
+<div class="flag flag-it"></div>
+</div>
+<h1>G.I.S.A.</h1>
+<p class="subtitle">
+Portale ufficiale per la verifica dei tesserini di identità operativa
+rilasciati da G.I.S.A.
+</p>
+</header>
 
-          <div class="badge-right">
-            <span>IDENTITY CHECK PORTAL</span>
-            <span class="tag">OFFICIAL USE</span>
-          </div>
-        </div>
+<main>
+<!-- COLONNA SINISTRA – FORM DI VERIFICA -->
+<section class="card">
+<div class="card-inner">
+<div id="status-pill" class="status-pill status-pill--idle">
+<span class="btn-icon">●</span>
+<span>In attesa di verifica</span>
+</div>
 
-        <!-- titolo -->
-        <div class="title-block">
-          <h1>
-            <span>UNITÀ CREDENZIALI</span>
-            Verifica Ufficiale Identità
-          </h1>
-          <p>Portale dedicato alla validazione dei tesserini di servizio
-            G.I.S.A.</p>
-        </div>
+<h2 class="card-title">Verifica tesserino</h2>
+<p class="card-sub">
+Inserisci il codice ID riportato sul tesserino per controllare lo
+stato di validità. I dati mostrati sono ridotti al minimo per
+tutela della privacy.
+</p>
 
-        <div class="divider"></div>
+<form id="verify-form" autocomplete="off">
+<div class="field-group">
+<div>
+<label for="id-tesserino">ID tesserino</label>
+<input
+id="id-tesserino"
+name="id-tesserino"
+type="text"
+inputmode="numeric"
+placeholder="Es. 15FE012414"
+required
+/>
+</div>
+<div>
+<label for="cognome">Cognome (opzionale)</label>
+<input
+id="cognome"
+name="cognome"
+type="text"
+placeholder="Es. Macrì"
+/>
+</div>
+</div>
 
-        <!-- form di verifica -->
-        <form id="verifyForm">
-          <div class="field-label">
-            <span>Step 1</span> • Inserire ID prefettizio per la verifica
-          </div>
+<button type="submit">
+<span class="btn-icon">🔍</span>
+<span>Verifica identità</span>
+</button>
+</form>
 
-          <div class="field-row">
-            <input
-              type="text"
-              id="idNumber"
-              autocomplete="off"
-              placeholder="Es: 15FE012414"
-              inputmode="latin"
-            />
-            <button type="submit">
-              Avvia verifica
-              <span class="arrow">➜</span>
-            </button>
-          </div>
-        </form>
+<div id="result-box" class="result-box" style="margin-top:14px;">
+<div class="result-title">
+Nessuna verifica effettuata.
+</div>
+<div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">
+Inserisci un ID tesserino e premi
+<span class="highlight">“Verifica identità”</span> per procedere al
+controllo.
+</div>
+</div>
 
-        <!-- risultato -->
-        <div id="result" class="result">
-          <div class="result-icon">ℹ️</div>
-          <div>
-            <strong>In attesa di richiesta.</strong><br />
-            <small>Inserisci un ID prefettizio per avviare la verifica
-              dell’identità.</small>
-          </div>
-        </div>
+<div class="divider"></div>
 
-        <!-- footer -->
-        <div class="footer-note">
-          <span>G.I.S.A. INTERNAL NETWORK</span>
-          <span>LOG ID • GISA-IDENTITY</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<p class="note">
+<span class="note-strong">Avvertenza:</span>
+questo strumento ha finalità di verifica minima del documento
+presentato. Il possesso del tesserino non sostituisce in alcun modo
+i controlli di legge da parte delle autorità competenti.
+</p>
+</div>
+</section>
 
-  <script>
-    // archivio ID validi
-    const KNOWN_IDS = {
-      "15FE012414": {
-        nome: "Giuliano",
-        cognome: "Macrì",
-        ruolo: "Operatore scelto 1° grado",
-        ente: "G.I.S.A. – Global Intelligence & Security Agency",
-        note: "Iscrizione Prefettura Ferrara"
-      }
-      // qui in futuro puoi aggiungere altri ID
-      // "ALTROCODICE": { ... }
-    };
+<!-- COLONNA DESTRA – SIGILLO & NOTE -->
+<aside class="card">
+<div class="card-inner side-card">
+<div class="seal">
+<div class="seal-inner">
+<div class="seal-text-small">Global</div>
+<div class="seal-divider"></div>
+<div class="seal-text-main">G.I.S.A.</div>
+<div class="seal-divider"></div>
+<div class="seal-text-small">Intelligence &amp; Security</div>
+</div>
+</div>
 
-    const form = document.getElementById("verifyForm");
-    const input = document.getElementById("idNumber");
-    const resultBox = document.getElementById("result");
+<p class="note">
+Questo portale è pensato per la verifica rapida tramite
+<span class="note-strong">QR code</span> stampato sul tesserino.
+Se sei giunto qui scansionando un codice, confronta:
+</p>
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
+<ul class="note" style="margin-left:16px; margin-top:4px;">
+<li>che l'indirizzo inizi con
+<span class="monosmall highlight">https://gisa-identity.github.io/</span>
+</li>
+<li>che il certificato HTTPS risulti valido nel browser</li>
+<li>che i dati mostrati coincidano con il documento esibito</li>
+</ul>
 
-      const rawValue = input.value.trim().toUpperCase();
+<p class="note">
+Per segnalazioni su documenti sospetti, clonazioni o abusi del
+marchio, contatta l'amministrazione competente dell'ente
+G.I.S.A. riportando l'ID tesserino e le circostanze del controllo.
+</p>
 
-      if (!rawValue) {
-        showError("Nessun ID inserito.", "Inserisci un ID prefettizio per procedere con la verifica.");
-        return;
-      }
+<div class="divider"></div>
 
-      const record = KNOWN_IDS[rawValue];
+<p class="note" style="font-size:0.7rem;">
+Sistema dimostrativo: i dati utilizzati per il test sono
+limitati e non rappresentano un archivio anagrafico completo.
+Nessun dato sensibile reale viene memorizzato da questa pagina.
+</p>
+</div>
+</aside>
+</main>
 
-      if (record) {
-        showSuccess(record, rawValue);
-      } else {
-        showError(
-          "ID non presente negli archivi G.I.S.A.",
-          "Verifica che il codice inserito sia corretto. In caso di dubbio contatta l’ufficio competente."
-        );
-      }
-    });
-
-    function showSuccess(record, id) {
-      resultBox.className = "result result--success";
-      resultBox.innerHTML = `
-        <div class="result-icon">✅</div>
-        <div>
-          <strong>Identità verificata.</strong><br />
-          ID Prefettizio: <strong>${id}</strong><br />
-          Nominativo: <strong>${record.nome} ${record.cognome}</strong><br />
-          Ruolo: <strong>${record.ruolo}</strong><br />
-          Ente: <strong>${record.ente}</strong><br />
-          <small>${record.note}</small>
-        </div>
-      `;
-    }
-
-    function showError(title, message) {
-      resultBox.className = "result result--error";
-      resultBox.innerHTML = `
-        <div class="result-icon">⚠️</div>
-        <div>
-          <strong>${title}</strong><br />
-          <small>${message}</small>
-        </div>
-      `;
-    }
-  </script>
+<footer>
+Global Intelligence &amp; Security Agency (G.I.S.A.) · Portale verifica tesserini ·
+<span class="monosmall">v1.0</span>
+</footer>
+</div>
 
 <script>
-window.addEventListener('DOMContentLoaded', function () {
-    // Legge i parametri dall'URL
-    const params = new URLSearchParams(window.location.search);
-    const idFromUrl = params.get('id');
+// Archivio dimostrativo: puoi aggiungere altre voci se vuoi
+const DEMO_RECORDS = {
+"15FE012414": {
+id: "15FE012414",
+nome: "Giuliano",
+cognome: "Macrì",
+ruolo: "Operatore Speciale",
+ente: "Global Intelligence & Security Agency (G.I.S.A.)",
+stato: "ATTIVO",
+validita: "31/12/2027"
+}
+};
 
-    if (idFromUrl) {
-        const input = document.getElementById('idNumber');
-        const form  = document.getElementById('verifyForm');
+const form = document.getElementById("verify-form");
+const inputId = document.getElementById("id-tesserino");
+const inputCognome = document.getElementById("cognome");
+const resultBox = document.getElementById("result-box");
+const statusPill = document.getElementById("status-pill");
 
-        if (input && form) {
-            input.value = idFromUrl;
+function setStatusIdle() {
+statusPill.className = "status-pill status-pill--idle";
+statusPill.innerHTML = '<span class="btn-icon">●</span><span>In attesa di verifica</span>';
+}
 
-            // Simula il click esattamente come un utente
-            const event = new Event('submit', {
-                bubbles: true,
-                cancelable: true
-            });
-            form.dispatchEvent(event);
-        }
-    }
+function setStatusOk() {
+statusPill.className = "status-pill status-pill--ok";
+statusPill.innerHTML = '<span class="btn-icon">✅</span><span>Tesserino valido</span>';
+}
+
+function setStatusFail() {
+statusPill.className = "status-pill status-pill--fail";
+statusPill.innerHTML = '<span class="btn-icon">⚠</span><span>ID non trovato / non valido</span>';
+}
+
+function renderResult(record, cognomeInput) {
+if (!record) {
+setStatusFail();
+resultBox.innerHTML = `
+<div class="result-title">Nessun tesserino corrispondente.</div>
+<div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">
+L'ID inserito non è presente nell'archivio dimostrativo oppure i dati
+non coincidono. Verifica di aver digitato correttamente il codice
+riportato sul tesserino.
+</div>
+`;
+return;
+}
+
+// Se è stato inserito un cognome, controlliamo che sia compatibile
+if (cognomeInput && cognomeInput.length > 1) {
+const norm = s => s.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+if (norm(record.cognome) !== norm(cognomeInput)) {
+setStatusFail();
+resultBox.innerHTML = `
+<div class="result-title">Dati non coerenti.</div>
+<div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">
+L'ID tesserino esiste ma il cognome digitato non coincide con i dati
+registrati. Controllare il documento e ripetere la verifica.
+</div>
+`;
+return;
+}
+}
+
+setStatusOk();
+resultBox.innerHTML = `
+<div class="result-title">Tesserino riconosciuto – stato: <span class="highlight">${record.stato}</span></div>
+<div class="result-grid">
+<div class="result-label">ID</div>
+<div class="result-value monosmall">${record.id}</div>
+
+<div class="result-label">Intestatario</div>
+<div class="result-value">${record.nome} ${record.cognome}</div>
+
+<div class="result-label">Ruolo</div>
+<div class="result-value">${record.ruolo}</div>
+
+<div class="result-label">Ente</div>
+<div class="result-value">${record.ente}</div>
+
+<div class="result-label">Validità</div>
+<div class="result-value">${record.validita}</div>
+</div>
+<div style="font-size:0.76rem; color:var(--muted); margin-top:8px;">
+La validità effettiva del documento resta subordinata ai controlli
+visivi e documentali da parte del personale incaricato.
+</div>
+`;
+}
+
+form.addEventListener("submit", function (event) {
+event.preventDefault();
+const id = inputId.value.trim().toUpperCase();
+const cognome = inputCognome.value.trim();
+if (!id) {
+setStatusIdle();
+return;
+}
+const record = DEMO_RECORDS[id] || null;
+renderResult(record, cognome);
 });
-</script>
 
+// Se la pagina viene aperta con ?id=15FE012414 precompila il form
+(function prefillFromURL() {
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id") || params.get("code") || "";
+if (id) {
+inputId.value = id;
+form.dispatchEvent(new Event("submit"));
+}
+})();
+</script>
 </body>
 </html>

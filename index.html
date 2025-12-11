@@ -8,427 +8,148 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-/* MENU G.I.S.A. */
-.gisa-menu {
-  width: 100%;
-  text-align: center;
-  padding: 14px 0;
-  margin-bottom: 20px;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(245,196,81,0.25);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-}
-
-.gisa-menu a {
-  margin: 0 14px;
-  font-size: 0.88rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: #f5c451;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.gisa-menu a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 8px rgba(245,196,81,0.6);
-}
 
 <style>
 :root {
---bg: #05070c;
---bg-card: #0f1119;
---accent: #f5c451;
---accent-soft: rgba(245,196,81,0.22);
---text: #f4f4f4;
---muted: #a1a5bb;
---danger: #ff4d4d;
---success: #2ecc71;
---border-radius: 16px;
---shadow-soft: 0 20px 50px rgba(0,0,0,0.65);
+  --bg: #05070c;
+  --bg-card: #0f1119;
+  --accent: #f5c451;
+  --accent-soft: rgba(245,196,81,0.22);
+  --text: #f4f4f4;
+  --muted: #a1a5bb;
+  --danger: #ff4d4d;
+  --success: #2ecc71;
+  --border-radius: 16px;
+  --shadow-soft: 0 20px 50px rgba(0,0,0,0.65);
 }
 
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
 
+/* BODY */
 body {
-font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-min-height: 100vh;
-background:
-radial-gradient(circle at top, #242b5c 0, #05070c 45%, #000 100%);
-color: var(--text);
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 24px 12px;
+  font-family:"Montserrat", sans-serif;
+  background: radial-gradient(circle at top, #242b5c 0, #05070c 45%, #000 100%);
+  color:var(--text);
+  padding:24px 12px;
+  display:flex;
+  justify-content:center;
+  min-height:100vh;
 }
 
-.page {
-width: 100%;
-max-width: 980px;
-margin: 0 auto;
+/* MENU G.I.S.A. */
+.gisa-menu {
+  width:100%;
+  text-align:center;
+  padding:14px 0;
+  margin-bottom:20px;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(245,196,81,0.25);
+  box-shadow:0 4px 14px rgba(0,0,0,0.4);
 }
 
-header {
-text-align: center;
-margin-bottom: 26px;
+.gisa-menu a {
+  margin:0 14px;
+  font-size:0.88rem;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:#f5c451;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.25s;
 }
 
+.gisa-menu a:hover {
+  color:#ffffff;
+  text-shadow:0 0 8px rgba(245,196,81,0.6);
+}
+
+/* PAGE */
+.page { width:100%; max-width:980px; margin:0 auto; }
+
+/* HEADER */
+header { text-align:center; margin-bottom:26px; }
 .badge-row {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-padding: 6px 14px;
-border-radius: 999px;
-background: linear-gradient(135deg, rgba(245,196,81,0.3), rgba(7,9,18,0.95));
-border: 1px solid rgba(245,196,81,0.5);
-font-size: 11px;
-letter-spacing: 0.16em;
-text-transform: uppercase;
-color: var(--muted);
-margin-bottom: 10px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 14px;
+  background:linear-gradient(135deg, rgba(245,196,81,0.3), rgba(7,9,18,0.95));
+  border:1px solid rgba(245,196,81,0.5);
+  border-radius:999px;
+  font-size:11px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--muted);
 }
+.flag { width:20px; height:13px; border-radius:2px; }
+.flag-eu { background:#1b2a7a; }
+.flag-it { background:linear-gradient(90deg,#009246 0 33%,#fff 33% 66%,#ce2b37 66%); }
 
-.flag {
-width: 20px;
-height: 13px;
-border-radius: 2px;
-overflow: hidden;
-box-shadow: 0 0 0 1px rgba(0,0,0,0.6);
-}
+h1 { font-size:2.2rem; letter-spacing:0.18em; }
+.subtitle { color:var(--muted); }
 
-.flag-eu {
-background:
-radial-gradient(circle at 50% 22%, #ffd700 0 1px, transparent 2px),
-radial-gradient(circle at 36% 36%, #ffd700 0 1px, transparent 2px),
-radial-gradient(circle at 64% 36%, #ffd700 0 1px, transparent 2px),
-radial-gradient(circle at 32% 52%, #ffd700 0 1px, transparent 2px),
-radial-gradient(circle at 68% 52%, #ffd700 0 1px, transparent 2px),
-radial-gradient(circle at 36% 68%, #ffd700 0 1px, transparent 2px),
-radial-gradient(circle at 64% 68%, #ffd700 0 1px, transparent 2px),
-radial-gradient(circle at 50% 80%, #ffd700 0 1px, transparent 2px),
-#1b2a7a;
-}
-
-.flag-it {
-background: linear-gradient(90deg,
-#009246 0 33%, #ffffff 33% 66%, #ce2b37 66% 100%);
-}
-
-h1 {
-font-size: clamp(1.8rem, 3.1vw, 2.2rem);
-font-weight: 700;
-letter-spacing: 0.18em;
-text-transform: uppercase;
-margin-bottom: 6px;
-}
-
-.subtitle {
-font-size: 0.95rem;
-color: var(--muted);
-max-width: 600px;
-margin: 0 auto;
-}
-
-main {
-display: grid;
-grid-template-columns: minmax(0, 3fr) minmax(0, 2.1fr);
-gap: 18px;
-}
-
-@media (max-width: 780px) {
-main {
-grid-template-columns: minmax(0, 1fr);
-}
-}
-
+/* CARDS */
 .card {
-position: relative;
-background:
-radial-gradient(circle at top left, rgba(245,196,81,0.12), transparent 55%),
-radial-gradient(circle at bottom right, rgba(20,26,56,0.9), rgba(4,5,10,0.96));
-border-radius: var(--border-radius);
-padding: 20px 18px 18px;
-box-shadow: var(--shadow-soft);
-border: 1px solid rgba(245,196,81,0.28);
-overflow: hidden;
+  padding:20px 18px;
+  border-radius:16px;
+  border:1px solid rgba(245,196,81,0.28);
+  background:radial-gradient(circle at top left,rgba(245,196,81,0.12),transparent 55%),
+             radial-gradient(circle at bottom right,rgba(20,26,56,0.9),rgba(4,5,10,0.96));
+  box-shadow:var(--shadow-soft);
+  margin-bottom:20px;
 }
 
-.card::before {
-content: "";
-position: absolute;
-inset: 0;
-background-image:
-linear-gradient(125deg, rgba(245,196,81,0.12), transparent 40%, transparent 60%, rgba(245,196,81,0.08)),
-repeating-linear-gradient(135deg,
-rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px,
-transparent 1px, transparent 3px);
-mix-blend-mode: soft-light;
-opacity: 0.55;
-pointer-events: none;
-}
-
-.card-inner {
-position: relative;
-z-index: 1;
-}
-
-.card-title {
-font-size: 1.02rem;
-text-transform: uppercase;
-letter-spacing: 0.12em;
-margin-bottom: 6px;
-}
-
-.card-sub {
-font-size: 0.84rem;
-color: var(--muted);
-margin-bottom: 16px;
-}
-
-.field-group {
-display: flex;
-flex-direction: column;
-gap: 12px;
-margin-bottom: 16px;
-}
-
+/* FORM */
 label {
-font-size: 0.76rem;
-letter-spacing: 0.16em;
-text-transform: uppercase;
-color: var(--muted);
+  text-transform:uppercase;
+  font-size:0.74rem;
+  color:var(--muted);
+  letter-spacing:0.13em;
 }
-
 input {
-width: 100%;
-padding: 9px 11px;
-border-radius: 9px;
-background: rgba(0,0,0,0.5);
-border: 1px solid rgba(245,196,81,0.38);
-color: var(--text);
-font-size: 0.9rem;
-outline: none;
-transition: border 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  background:rgba(0,0,0,0.45);
+  border:1px solid rgba(245,196,81,0.38);
+  color:var(--text);
+  font-size:0.95rem;
+  margin-bottom:16px;
 }
-
-input::placeholder {
-color: rgba(161,165,187,0.7);
-}
-
-input:focus {
-border-color: var(--accent);
-box-shadow: 0 0 0 1px rgba(245,196,81,0.4);
-background: rgba(0,0,0,0.75);
-}
-
 button {
-display: inline-flex;
-align-items: center;
-justify-content: center;
-gap: 6px;
-padding: 9px 16px;
-border-radius: 999px;
-border: none;
-cursor: pointer;
-font-size: 0.88rem;
-font-weight: 600;
-letter-spacing: 0.14em;
-text-transform: uppercase;
-background: linear-gradient(135deg, #f5c451, #f2a933);
-color: #1c1507;
-box-shadow: 0 12px 26px rgba(0,0,0,0.6);
-transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  padding:10px 18px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg,#f5c451,#f2a933);
+  color:#1c1507;
+  font-weight:600;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  cursor:pointer;
+  margin-bottom:14px;
 }
 
-button:hover {
-transform: translateY(-1px);
-box-shadow: 0 16px 35px rgba(0,0,0,0.7);
-filter: brightness(1.05);
-}
-
-button:active {
-transform: translateY(0);
-box-shadow: 0 8px 18px rgba(0,0,0,0.7);
-filter: brightness(0.97);
-}
-
-.btn-icon {
-font-size: 1rem;
-}
-
+/* STATUS */
 .status-pill {
-display: inline-flex;
-align-items: center;
-gap: 6px;
-padding: 4px 10px;
-border-radius: 999px;
-font-size: 0.74rem;
-letter-spacing: 0.14em;
-text-transform: uppercase;
-margin-bottom: 10px;
+  display:inline-flex;
+  padding:5px 10px;
+  border-radius:999px;
+  font-size:0.74rem;
+  letter-spacing:0.14em;
+  margin-bottom:10px;
 }
+.status-pill--idle { background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid rgba(255,255,255,0.1); }
+.status-pill--ok { background:rgba(46,204,113,0.15); color:#2ecc71; border:1px solid #2ecc714d; }
+.status-pill--fail { background:rgba(255,77,77,0.15); color:#ff4d4d; border:1px solid #ff4d4d80; }
 
-.status-pill--idle {
-background: rgba(255,255,255,0.05);
-color: var(--muted);
-border: 1px solid rgba(255,255,255,0.08);
-}
-
-.status-pill--ok {
-background: rgba(46,204,113,0.1);
-color: var(--success);
-border: 1px solid rgba(46,204,113,0.6);
-}
-
-.status-pill--fail {
-background: rgba(255,77,77,0.1);
-color: var(--danger);
-border: 1px solid rgba(255,77,77,0.65);
-}
-
-.result-box {
-margin-top: 10px;
-padding: 12px 12px 10px;
-border-radius: 10px;
-background: rgba(5,7,16,0.85);
-border: 1px solid rgba(255,255,255,0.06);
-font-size: 0.84rem;
-line-height: 1.35;
-}
-
-.result-title {
-font-weight: 600;
-margin-bottom: 4px;
-}
-
-.result-grid {
-display: grid;
-grid-template-columns: auto 1fr;
-column-gap: 12px;
-row-gap: 3px;
-font-size: 0.8rem;
-margin-top: 6px;
-}
-
-.result-label {
-text-transform: uppercase;
-letter-spacing: 0.12em;
-color: var(--muted);
-font-size: 0.7rem;
-}
-
-.result-value {
-font-weight: 500;
-}
-
-.side-card {
-display: flex;
-flex-direction: column;
-gap: 14px;
-}
-
-.seal {
-display: inline-flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 4px;
-width: 130px;
-height: 130px;
-margin: 0 auto 4px;
-border-radius: 50%;
-background:
-radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 55%),
-conic-gradient(from 200deg,
-#f5c451 0 30%, #b8861b 30% 60%, #f5c451 60% 100%);
-position: relative;
-box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-}
-
-.seal::before {
-content: "";
-position: absolute;
-inset: 9px;
-border-radius: 50%;
-border: 2px solid rgba(0,0,0,0.6);
-background:
-radial-gradient(circle at top, rgba(0,0,0,0.3), transparent 60%),
-#111319;
-}
-
-.seal-inner {
-position: relative;
-z-index: 1;
-text-align: center;
-padding: 10px;
-}
-
-.seal-text-small {
-font-size: 0.53rem;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(--muted);
-}
-
-.seal-text-main {
-font-size: 0.74rem;
-font-weight: 700;
-letter-spacing: 0.22em;
-text-transform: uppercase;
-}
-
-.seal-divider {
-width: 40px;
-height: 1px;
-background: linear-gradient(90deg, transparent, var(--accent), transparent);
-margin: 5px auto;
-}
-
-.note {
-font-size: 0.76rem;
-color: var(--muted);
-line-height: 1.4;
-}
-
-.note-strong {
-font-weight: 600;
-color: #d5d8ec;
-}
-
-footer {
-margin-top: 18px;
-text-align: center;
-font-size: 0.7rem;
-color: var(--muted);
-opacity: 0.9;
-}
-
-.monosmall {
-font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-font-size: 0.78rem;
-}
-
-.highlight {
-color: var(--accent);
-}
-
-.divider {
-height: 1px;
-margin: 10px 0 8px;
-background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-opacity: 0.6;
-}
 </style>
 </head>
 
 <body>
-  <!-- MENU DI NAVIGAZIONE G.I.S.A. -->
+
+<!-- MENU -->
 <nav class="gisa-menu">
   <a href="index.html">Verifica</a>
   <a href="info.html">Informazioni</a>
@@ -436,249 +157,77 @@ opacity: 0.6;
 </nav>
 
 <div class="page">
+
 <header>
-<div class="badge-row">
-<div class="flag flag-eu"></div>
-<span>Global Intelligence &amp; Security Agency</span>
-<div class="flag flag-it"></div>
-</div>
-<h1>G.I.S.A.</h1>
-<p class="subtitle">
-Portale ufficiale per la verifica dei tesserini di identità operativa
-rilasciati da G.I.S.A.
-</p>
+  <div class="badge-row">
+    <div class="flag flag-eu"></div>
+    <span>Global Intelligence & Security Agency</span>
+    <div class="flag flag-it"></div>
+  </div>
+
+  <h1>G.I.S.A.</h1>
+  <p class="subtitle">Portale ufficiale per la verifica dei tesserini di identità operativa.</p>
 </header>
 
-<main>
-<!-- COLONNA SINISTRA – FORM DI VERIFICA -->
-<section class="card">
-<div class="card-inner">
-<div id="status-pill" class="status-pill status-pill--idle">
-<span class="btn-icon">●</span>
-<span>In attesa di verifica</span>
+<div class="card">
+  <div id="status-pill" class="status-pill status-pill--idle">● IN ATTESA DI VERIFICA</div>
+
+  <h2>Verifica Tesserino</h2>
+
+  <label>ID Tesserino</label>
+  <input id="id-tesserino" placeholder="Es. 15FE012414">
+
+  <label>Cognome (opzionale)</label>
+  <input id="cognome" placeholder="Es. Macrì">
+
+  <button onclick="verifica()">Verifica identità</button>
+
+  <div id="result"></div>
 </div>
 
-<h2 class="card-title">Verifica tesserino</h2>
-<p class="card-sub">
-Inserisci il codice ID riportato sul tesserino per controllare lo
-stato di validità. I dati mostrati sono ridotti al minimo per
-tutela della privacy.
-</p>
-
-<form id="verify-form" autocomplete="off">
-<div class="field-group">
-<div>
-<label for="id-tesserino">ID tesserino</label>
-<input
-id="id-tesserino"
-name="id-tesserino"
-type="text"
-inputmode="numeric"
-placeholder="Es. 15FE012414"
-required
-/>
-</div>
-<div>
-<label for="cognome">Cognome (opzionale)</label>
-<input
-id="cognome"
-name="cognome"
-type="text"
-placeholder="Es. Macrì"
-/>
-</div>
-</div>
-
-<button type="submit">
-<span class="btn-icon">🔍</span>
-<span>Verifica identità</span>
-</button>
-</form>
-
-<div id="result-box" class="result-box" style="margin-top:14px;">
-<div class="result-title">
-Nessuna verifica effettuata.
-</div>
-<div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">
-Inserisci un ID tesserino e premi
-<span class="highlight">“Verifica identità”</span> per procedere al
-controllo.
-</div>
-</div>
-
-<div class="divider"></div>
-
-<p class="note">
-<span class="note-strong">Avvertenza:</span>
-questo strumento ha finalità di verifica minima del documento
-presentato. Il possesso del tesserino non sostituisce in alcun modo
-i controlli di legge da parte delle autorità competenti.
-</p>
-</div>
-</section>
-
-<!-- COLONNA DESTRA – SIGILLO & NOTE -->
-<aside class="card">
-<div class="card-inner side-card">
-<div class="seal">
-<div class="seal-inner">
-<div class="seal-text-small">Global</div>
-<div class="seal-divider"></div>
-<div class="seal-text-main">G.I.S.A.</div>
-<div class="seal-divider"></div>
-<div class="seal-text-small">Intelligence &amp; Security</div>
-</div>
-</div>
-
-<p class="note">
-Questo portale è pensato per la verifica rapida tramite
-<span class="note-strong">QR code</span> stampato sul tesserino.
-Se sei giunto qui scansionando un codice, confronta:
-</p>
-
-<ul class="note" style="margin-left:16px; margin-top:4px;">
-<li>che l'indirizzo inizi con
-<span class="monosmall highlight">https://gisa-identity.github.io/</span>
-</li>
-<li>che il certificato HTTPS risulti valido nel browser</li>
-<li>che i dati mostrati coincidano con il documento esibito</li>
-</ul>
-
-<p class="note">
-Per segnalazioni su documenti sospetti, clonazioni o abusi del
-marchio, contatta l'amministrazione competente dell'ente
-G.I.S.A. riportando l'ID tesserino e le circostanze del controllo.
-</p>
-
-<div class="divider"></div>
-
-<p class="note" style="font-size:0.7rem;">
-Sistema dimostrativo: i dati utilizzati per il test sono
-limitati e non rappresentano un archivio anagrafico completo.
-Nessun dato sensibile reale viene memorizzato da questa pagina.
-</p>
-</div>
-</aside>
-</main>
-
-<footer>
-Global Intelligence &amp; Security Agency (G.I.S.A.) · Portale verifica tesserini ·
-<span class="monosmall">v1.0</span>
-</footer>
 </div>
 
 <script>
-// Archivio dimostrativo: puoi aggiungere altre voci se vuoi
-const DEMO_RECORDS = {
-"15FE012414": {
-id: "15FE012414",
-nome: "Giuliano",
-cognome: "Macrì",
-ruolo: "Operatore Speciale",
-ente: "Global Intelligence & Security Agency (G.I.S.A.)",
-stato: "ATTIVO",
-validita: "31/12/2027"
-}
+const DB = {
+  "15FE012414": {
+    id:"15FE012414",
+    nome:"Giuliano",
+    cognome:"Macrì",
+    ruolo:"Operatore Speciale",
+    validita:"31/12/2027"
+  }
 };
 
-const form = document.getElementById("verify-form");
-const inputId = document.getElementById("id-tesserino");
-const inputCognome = document.getElementById("cognome");
-const resultBox = document.getElementById("result-box");
-const statusPill = document.getElementById("status-pill");
+function verifica(){
+  const id = document.getElementById("id-tesserino").value.trim();
+  const cognome = document.getElementById("cognome").value.trim().toLowerCase();
+  const r = document.getElementById("result");
+  const status = document.getElementById("status-pill");
 
-function setStatusIdle() {
-statusPill.className = "status-pill status-pill--idle";
-statusPill.innerHTML = '<span class="btn-icon">●</span><span>In attesa di verifica</span>';
+  if(!DB[id]){
+    status.className="status-pill status-pill--fail";
+    status.innerText="ID NON VALIDO";
+    r.innerHTML="<p>Nessun tesserino corrispondente.</p>";
+    return;
+  }
+
+  if(cognome && cognome !== DB[id].cognome.toLowerCase()){
+    status.className="status-pill status-pill--fail";
+    status.innerText="COGNOME NON CORRISPONDENTE";
+    r.innerHTML="<p>I dati non coincidono.</p>";
+    return;
+  }
+
+  status.className="status-pill status-pill--ok";
+  status.innerText="TESSERINO VALIDO";
+
+  r.innerHTML =
+    "<p><strong>ID:</strong> "+DB[id].id+"<br>" +
+    "<strong>Intestatario:</strong> "+DB[id].nome+" "+DB[id].cognome+"<br>" +
+    "<strong>Ruolo:</strong> "+DB[id].ruolo+"<br>" +
+    "<strong>Validità:</strong> "+DB[id].validita+"</p>";
 }
-
-function setStatusOk() {
-statusPill.className = "status-pill status-pill--ok";
-statusPill.innerHTML = '<span class="btn-icon">✅</span><span>Tesserino valido</span>';
-}
-
-function setStatusFail() {
-statusPill.className = "status-pill status-pill--fail";
-statusPill.innerHTML = '<span class="btn-icon">⚠</span><span>ID non trovato / non valido</span>';
-}
-
-function renderResult(record, cognomeInput) {
-if (!record) {
-setStatusFail();
-resultBox.innerHTML = `
-<div class="result-title">Nessun tesserino corrispondente.</div>
-<div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">
-L'ID inserito non è presente nell'archivio dimostrativo oppure i dati
-non coincidono. Verifica di aver digitato correttamente il codice
-riportato sul tesserino.
-</div>
-`;
-return;
-}
-
-// Se è stato inserito un cognome, controlliamo che sia compatibile
-if (cognomeInput && cognomeInput.length > 1) {
-const norm = s => s.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-if (norm(record.cognome) !== norm(cognomeInput)) {
-setStatusFail();
-resultBox.innerHTML = `
-<div class="result-title">Dati non coerenti.</div>
-<div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">
-L'ID tesserino esiste ma il cognome digitato non coincide con i dati
-registrati. Controllare il documento e ripetere la verifica.
-</div>
-`;
-return;
-}
-}
-
-setStatusOk();
-resultBox.innerHTML = `
-<div class="result-title">Tesserino riconosciuto – stato: <span class="highlight">${record.stato}</span></div>
-<div class="result-grid">
-<div class="result-label">ID</div>
-<div class="result-value monosmall">${record.id}</div>
-
-<div class="result-label">Intestatario</div>
-<div class="result-value">${record.nome} ${record.cognome}</div>
-
-<div class="result-label">Ruolo</div>
-<div class="result-value">${record.ruolo}</div>
-
-<div class="result-label">Ente</div>
-<div class="result-value">${record.ente}</div>
-
-<div class="result-label">Validità</div>
-<div class="result-value">${record.validita}</div>
-</div>
-<div style="font-size:0.76rem; color:var(--muted); margin-top:8px;">
-La validità effettiva del documento resta subordinata ai controlli
-visivi e documentali da parte del personale incaricato.
-</div>
-`;
-}
-
-form.addEventListener("submit", function (event) {
-event.preventDefault();
-const id = inputId.value.trim().toUpperCase();
-const cognome = inputCognome.value.trim();
-if (!id) {
-setStatusIdle();
-return;
-}
-const record = DEMO_RECORDS[id] || null;
-renderResult(record, cognome);
-});
-
-// Se la pagina viene aperta con ?id=15FE012414 precompila il form
-(function prefillFromURL() {
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id") || params.get("code") || "";
-if (id) {
-inputId.value = id;
-form.dispatchEvent(new Event("submit"));
-}
-})();
 </script>
+
 </body>
 </html>

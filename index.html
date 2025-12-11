@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>G.I.S.A. – Portale unico</title>
-  <meta name="description" content="Portale ufficiale G.I.S.A. per verifica tesserini, informazioni e manuale operatori.">
+  <meta name="description" content="Portale ufficiale G.I.S.A. per verifica tesserini, informazioni, manuale operatori e galleria fotografica.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,6 +32,10 @@
       background: radial-gradient(circle at top, #242b5c 0, #05070c 45%, #000 100%);
       color: var(--text);
       min-height: 100vh;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     a { color: var(--accent); }
@@ -165,6 +169,7 @@
       cursor: pointer;
       margin-bottom: 14px;
     }
+
     .status-pill {
       display: inline-flex;
       padding: 5px 10px;
@@ -215,72 +220,103 @@
     .text-block ul {
       margin-left: 16px;
     }
-  html {
-    scroll-behavior: smooth;
-  }
+
+    /* GALLERIA FOTOGRAFICA */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .photo-card {
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(245,196,81,0.28);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.6);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-card p {
+      padding: 8px 10px 10px;
+      font-size: 0.9rem;
+      color: #d0d2ea;
+    }
+
     /* MOBILE: ottimizzazione smartphone */
-@media (max-width: 768px) {
+    @media (max-width: 768px) {
 
-  body {
-    padding: 12px 6px;
-  }
+      body {
+        padding: 12px 6px;
+      }
 
-  .gisa-menu {
-    padding: 10px 0;
-  }
+      .gisa-menu {
+        padding: 10px 0;
+      }
 
-  .gisa-menu a {
-    display: inline-block;
-    margin: 0 8px 4px;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-  }
+      .gisa-menu a {
+        display: inline-block;
+        margin: 0 8px 4px;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+      }
 
-  .page {
-    padding: 16px 8px 28px;
-  }
+      .page {
+        padding: 16px 8px 28px;
+      }
 
-  header {
-    margin-bottom: 20px;
-  }
+      header {
+        margin-bottom: 20px;
+      }
 
-  h1 {
-    font-size: 1.4rem;
-    letter-spacing: 0.14em;
-  }
+      h1 {
+        font-size: 1.4rem;
+        letter-spacing: 0.14em;
+      }
 
-  .badge-row {
-    font-size: 0.7rem;
-    padding: 4px 10px;
-  }
+      .badge-row {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+      }
 
-  section {
-    margin-bottom: 28px;
-  }
+      section {
+        margin-bottom: 28px;
+      }
 
-  .card {
-    padding: 16px 14px;
-  }
+      .card {
+        padding: 16px 14px;
+      }
 
-  label {
-    font-size: 0.68rem;
-  }
+      label {
+        font-size: 0.68rem;
+      }
 
-  input {
-    padding: 9px 10px;
-    font-size: 0.9rem;
-  }
+      input {
+        padding: 9px 10px;
+        font-size: 0.9rem;
+      }
 
-  button {
-    width: 100%;
-    font-size: 0.8rem;
-    letter-spacing: 0.13em;
-  }
+      button {
+        width: 100%;
+        font-size: 0.8rem;
+        letter-spacing: 0.13em;
+      }
 
-  .text-block p,
-  .text-block li {
-    font-size: 0.9rem;
-  }
+      .text-block p,
+      .text-block li {
+        font-size: 0.9rem;
+      }
+
+      .photo-card img {
+        height: 160px;
+      }
+    }
   </style>
 </head>
 
@@ -291,6 +327,7 @@
     <a href="#verifica">Verifica</a>
     <a href="#info">Informazioni</a>
     <a href="#manuale">Manuale Operatori</a>
+    <a href="#foto">Fotografie</a>
   </nav>
 
   <div class="page">
@@ -302,7 +339,7 @@
       </div>
       <h1>G.I.S.A.</h1>
       <p class="subtitle">
-        Portale unico per la verifica dei tesserini, le informazioni generali e le linee guida operative.
+        Portale unico per la verifica dei tesserini, le informazioni generali, le linee guida operative e la galleria fotografica.
       </p>
     </header>
 
@@ -382,10 +419,42 @@
         </p>
       </div>
     </section>
+
+    <!-- SEZIONE FOTOGRAFIE -->
+    <section id="foto">
+      <h2 class="section-title">Fotografie</h2>
+      <div class="card">
+        <div class="photo-grid">
+
+          <!-- FOTO 1 -->
+          <div class="photo-card">
+            <img src="img/foto1.jpg" alt="Operatore G.I.S.A. in servizio">
+            <p>Operatore G.I.S.A. – esempio di divisa operativa.</p>
+          </div>
+
+          <!-- FOTO 2 -->
+          <div class="photo-card">
+            <img src="img/foto2.jpg" alt="Tesserino G.I.S.A.">
+            <p>Tesserino G.I.S.A. con QR per la verifica ufficiale.</p>
+          </div>
+
+          <!-- FOTO 3 -->
+          <div class="photo-card">
+            <img src="img/foto3.jpg" alt="Scenario operativo dimostrativo">
+            <p>Scenario operativo dimostrativo per attività di sicurezza.</p>
+          </div>
+
+        </div>
+        <p class="note" style="margin-top:10px;">
+          Le immagini hanno solo finalità illustrative. Puoi sostituirle con le tue foto ufficiali
+          caricandole nella cartella <code>img</code> della repository (nomi file: <code>foto1.jpg</code>, <code>foto2.jpg</code>, <code>foto3.jpg</code>).
+        </p>
+      </div>
+    </section>
   </div>
 
   <script>
-    // Archivio demo: puoi aggiungere altre voci qui
+    // Archivio demo: puoi aggiungere altri ID qui
     const DB = {
       "15FE012414": {
         id: "15FE012414",

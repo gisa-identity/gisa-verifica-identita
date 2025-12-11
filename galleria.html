@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G.I.S.A. – Galleria Fotografica</title>
+  <meta name="description" content="Galleria fotografica ufficiale G.I.S.A. – immagini dimostrative e materiale operativo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #05070c;
+      --accent: #f5c451;
+      --text: #f4f4f4;
+      --muted: #a1a5bb;
+      --border: rgba(245,196,81,0.28);
+      --shadow: 0 20px 50px rgba(0,0,0,0.65);
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Montserrat", system-ui, sans-serif;
+      background: radial-gradient(circle at top, #242b5c 0, #05070c 45%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* MENU SUPERIORE */
+    .gisa-menu {
+      width: 100%;
+      text-align: center;
+      padding: 14px 0;
+      background: rgba(0,0,0,0.7);
+      border-bottom: 1px solid rgba(245,196,81,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(6px);
+    }
+
+    .gisa-menu a {
+      margin: 0 18px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .gisa-menu a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(245,196,81,0.6);
+    }
+
+    .gisa-menu a.is-active {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 4px;
+    }
+
+    /* LAYOUT */
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 12px 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .badge-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(245,196,81,0.3), rgba(7,9,18,0.95));
+      border-radius: 999px;
+      border: 1px solid rgba(245,196,81,0.5);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .flag {
+      width: 20px;
+      height: 13px;
+      border-radius: 2px;
+    }
+
+    .flag-eu { background: #1b2a7a; }
+    .flag-it { background: linear-gradient(90deg,#009246 0 33%,#fff 33% 66%,#ce2b37 66%); }
+
+    h1 {
+      font-size: 2rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* CARD */
+    .card {
+      padding: 20px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, rgba(245,196,81,0.12), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(20,26,56,0.9), rgba(4,5,10,0.96));
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    /* GALLERIA */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .photo-card {
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(245,196,81,0.28);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.6);
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+      border-color: rgba(245,196,81,0.6);
+    }
+
+    .photo-card p {
+      padding: 7px 10px;
+      font-size: 0.85rem;
+      color: #d0d2ea;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .empty-msg {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--muted);
+      padding: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- MENU -->
+  <nav class="gisa-menu">
+    <a href="index.html#verifica">Verifica</a>
+    <a href="index.html#info">Informazioni</a>
+    <a href="index.html#manuale">Manuale Operatori</a>
+    <a href="galleria.html" class="is-active">Fotografie</a>
+  </nav>
+
+  <div class="page">
+
+    <header>
+      <div class="badge-row">
+        <div class="flag flag-eu"></div>
+        <span>Global Intelligence &amp; Security Agency</span>
+        <div class="flag flag-it"></div>
+      </div>
+      <h1>G.I.S.A.</h1>
+      <p class="subtitle">Galleria fotografica del materiale operativo e dei tesserini G.I.S.A.</p>
+    </header>
+
+    <section>
+      <h2 class="section-title">Archivio immagini</h2>
+
+      <div class="card">
+        <div id="gallery" class="photo-grid"></div>
+        <p id="emptyMsg" class="empty-msg" style="display:none;">Nessuna immagine trovata nella cartella uploads.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const owner = "gisa-identity";
+    const repo = "gisa-verifica-identita";
+    const uploadsPath = "uploads";
+
+    const galleryEl = document.getElementById("gallery");
+    const emptyMsgEl = document.getElementById("emptyMsg");
+
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+
+    function isImageFile(name) {
+      return imageExtensions.some(ext => name.toLowerCase().endsWith(ext));
+    }
+
+    async function loadGallery() {
+      try {
+        const url =
+          `https://api.github.com/repos/${owner}/${repo}/contents/${uploadsPath}`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const images = data.filter(item => item.type === "file" && isImageFile(item.name));
+
+        if (!images.length) {
+          emptyMsgEl.style.display = "block";
+          return;
+        }
+
+        images.forEach(file => {
+          const card = document.createElement("div");
+          card.className = "photo-card";
+
+          const img = document.createElement("img");
+          img.src = file.download_url;
+
+          const caption = document.createElement("p");
+          caption.textContent = file.name;
+
+          card.appendChild(img);
+          card.appendChild(caption);
+
+          galleryEl.appendChild(card);
+        });
+      } catch (e) {
+        emptyMsgEl.style.display = "block";
+      }
+    }
+
+    loadGallery();
+  </script>
+
+</body>
+</html>

@@ -1,159 +1,68 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>G.I.S.A. – Manuale Operatori</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G.I.S.A. – Manuale Operatori</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      font-family: "Montserrat", system-ui, sans-serif;
-      background: radial-gradient(circle at top, #242b5c 0, #05070c 45%, #000 100%);
-      color: #f4f4f4;
-      margin: 0;
-      padding: 24px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
+<style>
+body {
+  font-family:"Montserrat", sans-serif;
+  background:radial-gradient(circle at top,#242b5c 0,#05070c 45%,#000 100%);
+  color:#f4f4f4;
+  padding:24px 12px;
+}
 
-    .page {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+/* MENU */
+.gisa-menu {
+  width:100%;
+  text-align:center;
+  padding:14px 0;
+  margin-bottom:20px;
+  background:rgba(0,0,0,0.55);
+  border-bottom:1px solid rgba(245,196,81,0.25);
+}
+.gisa-menu a {
+  margin:0 14px;
+  color:#f5c451;
+  text-transform:uppercase;
+  text-decoration:none;
+  font-weight:600;
+}
+.gisa-menu a:hover { color:#fff; }
 
-    a { color: #f5c451; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .nav {
-      font-size: 0.8rem;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: clamp(1.8rem, 3vw, 2.2rem);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    h2 {
-      margin-top: 20px;
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #f5c451;
-    }
-
-    p, li {
-      line-height: 1.5;
-      font-size: 0.95rem;
-      color: #c3c6dd;
-    }
-
-    .card {
-      background: radial-gradient(circle at top left, rgba(245,196,81,0.12), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(20,26,56,0.9), rgba(4,5,10,0.96));
-      border-radius: 16px;
-      padding: 22px 20px;
-      border: 1px solid rgba(245,196,81,0.28);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.65);
-    }
-
-    ul {
-      margin-top: 8px;
-      margin-left: 16px;
-    }
-
-    .divider {
-      height: 1px;
-      margin: 16px 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-    }
-  </style>
+.card {
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+  border-radius:16px;
+  background:rgba(20,26,56,0.7);
+  border:1px solid rgba(245,196,81,0.28);
+}
+</style>
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <div class="nav">
-        🔙 <a href="index.html">Torna alla pagina principale</a>
-      </div>
 
-      <h1>Manuale Operatori</h1>
-      <p>Linee guida ufficiali G.I.S.A. per condotta, operatività e procedure di sicurezza.</p>
-    </header>
+<nav class="gisa-menu">
+  <a href="index.html">Verifica</a>
+  <a href="info.html">Informazioni</a>
+  <a href="manuale-operatori.html">Manuale Operatori</a>
+</nav>
 
-    <section class="card">
+<div class="card">
+<h1>Manuale Operatori</h1>
 
-      <h2>1. Identità Operativa</h2>
-      <p>
-        Ogni operatore G.I.S.A. rappresenta l’Agenzia in ogni contesto.  
-        Il tesserino d’identità deve essere sempre:
-      </p>
-      <ul>
-        <li>aggiornato e leggibile,</li>
-        <li>esibito solo quando necessario,</li>
-        <li>conservato in modo sicuro.</li>
-      </ul>
+<h2>1. Identità Operativa</h2>
+<p>Linee guida sulla gestione del tesserino e della propria identità professionale.</p>
 
-      <div class="divider"></div>
+<h2>2. Condotta Professionale</h2>
+<p>Regole di comportamento, riservatezza e rappresentanza dell'Agenzia.</p>
 
-      <h2>2. Comportamento Professionale</h2>
-      <p>
-        Gli operatori mantengono un atteggiamento:
-      </p>
-      <ul>
-        <li>rispettoso verso colleghi e cittadini,</li>
-        <li>imparziale nelle decisioni,</li>
-        <li>orientato alla prevenzione dei rischi,</li>
-        <li>riservato nelle comunicazioni sensibili.</li>
-      </ul>
+<h2>3. Procedure di Verifica</h2>
+<p>Istruzioni per la gestione dei controlli e validazioni tramite QR.</p>
+</div>
 
-      <div class="divider"></div>
-
-      <h2>3. Procedure di Verifica</h2>
-      <p>
-        Durante i controlli documentali:
-      </p>
-      <ul>
-        <li>verificare sempre il QR code del tesserino,</li>
-        <li>confrontare nome, foto e ID con il documento mostrato,</li>
-        <li>se i dati non coincidono, applicare la procedura “Documento sospetto”.</li>
-      </ul>
-
-      <div class="divider"></div>
-
-      <h2>4. Sicurezza e Riservatezza</h2>
-      <p>
-        Tutte le informazioni operative sono confidenziali.  
-        È vietato diffondere:
-      </p>
-      <ul>
-        <li>dati personali degli operatori,</li>
-        <li>procedure interne non autorizzate,</li>
-        <li>codici, password o accessi riservati.</li>
-      </ul>
-
-      <div class="divider"></div>
-
-      <h2>5. Segnalazioni e Anomalie</h2>
-      <p>
-        Eventuali irregolarità, clonazioni o abusi del tesserino G.I.S.A.  
-        devono essere segnalati tramite i canali ufficiali dell’ente.
-      </p>
-
-    </section>
-  </div>
 </body>
 </html>

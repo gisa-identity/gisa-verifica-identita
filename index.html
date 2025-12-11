@@ -1,320 +1,125 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>G.I.S.A. – Portale unico</title>
-  <meta name="description" content="Portale ufficiale G.I.S.A. per verifica tesserini, informazioni, manuale operatori e galleria fotografica.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G.I.S.A. – Portale Ufficiale</title>
 
   <style>
-    :root {
-      --bg: #05070c;
-      --accent: #f5c451;
-      --text: #f4f4f4;
-      --muted: #a1a5bb;
-      --card: #0f1119;
-      --border: rgba(245,196,81,0.28);
-      --shadow: 0 20px 50px rgba(0,0,0,0.65);
-      --radius: 16px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: "Montserrat", system-ui, sans-serif;
-      background: radial-gradient(circle at top, #242b5c 0, #05070c 45%, #000 100%);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    a { color: var(--accent); }
-
-    /* MENU SUPERIORE */
-    .gisa-menu {
-      width: 100%;
-      text-align: center;
-      padding: 14px 0;
-      background: rgba(0,0,0,0.7);
-      border-bottom: 1px solid rgba(245,196,81,0.25);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(6px);
-    }
-
-    .gisa-menu a {
-      margin: 0 18px;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-
-    .gisa-menu a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 8px rgba(245,196,81,0.6);
-    }
-
-    /* LAYOUT PRINCIPALE */
-    .page {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 24px 12px 40px;
+      margin: 0;
+      background: #0d0d14;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     header {
       text-align: center;
-      margin-bottom: 28px;
+      padding: 20px 10px;
     }
 
-    .badge-row {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: linear-gradient(135deg, rgba(245,196,81,0.3), rgba(7,9,18,0.95));
-      border-radius: 999px;
-      border: 1px solid rgba(245,196,81,0.5);
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 15px 0;
+      background: #111;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #333;
     }
 
-    .flag {
-      width: 20px;
-      height: 13px;
-      border-radius: 2px;
+    nav a {
+      text-decoration: none;
+      color: #ffd700;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
-    .flag-eu { background: #1b2a7a; }
-    .flag-it { background: linear-gradient(90deg,#009246 0 33%,#fff 33% 66%,#ce2b37 66%); }
+
+    .banner {
+      text-align: center;
+      margin-top: 20px;
+      background: rgba(255,255,255,0.05);
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
 
     h1 {
-      font-size: 2.1rem;
-      letter-spacing: 0.18em;
+      text-align: center;
+      font-size: 34px;
+      margin-top: 5px;
+      letter-spacing: 4px;
+    }
+
+    .section {
+      width: 90%;
+      max-width: 1100px;
+      margin: 50px auto;
+    }
+
+    .section-title {
+      font-size: 26px;
+      margin-bottom: 25px;
       text-transform: uppercase;
-    }
-
-    .subtitle {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    /* SEZIONI */
-    section {
-      margin-bottom: 40px;
-    }
-
-    h2.section-title {
-      font-size: 1.3rem;
-      margin-bottom: 14px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      color: #ffd700;
+      text-align: center;
     }
 
     .card {
-      padding: 20px 18px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(circle at top left, rgba(245,196,81,0.12), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(20,26,56,0.9), rgba(4,5,10,0.96));
-      box-shadow: var(--shadow);
-    }
-
-    /* FORM VERIFICA */
-    label {
-      text-transform: uppercase;
-      font-size: 0.74rem;
-      color: var(--muted);
-      letter-spacing: 0.13em;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 8px;
-      background: rgba(0,0,0,0.45);
-      border: 1px solid rgba(245,196,81,0.38);
-      color: var(--text);
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-    }
-
-    button {
-      padding: 10px 18px;
-      border: none;
-      border-radius: 999px;
-      background: linear-gradient(135deg,#f5c451,#f2a933);
-      color: #1c1507;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      margin-bottom: 14px;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 0.74rem;
-      letter-spacing: 0.14em;
-      margin-bottom: 10px;
-    }
-
-    .status-pill--idle {
       background: rgba(255,255,255,0.05);
-      color: var(--muted);
+      border-radius: 16px;
+      padding: 25px;
       border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 40px;
     }
 
-    .status-pill--ok {
-      background: rgba(46,204,113,0.15);
-      color: #2ecc71;
-      border: 1px solid #2ecc714d;
+    .card-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
-    .status-pill--fail {
-      background: rgba(255,77,77,0.15);
-      color: #ff4d4d;
-      border: 1px solid #ff4d4d80;
-    }
-
-    .note {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 8px;
-      line-height: 1.5;
-    }
-
-    /* TESTO SEMPLICE PER INFO / MANUALE */
-    .text-block p {
-      margin-bottom: 10px;
-      font-size: 0.95rem;
-      color: #d0d2ea;
-    }
-
-    .text-block li {
-      margin-bottom: 6px;
-      font-size: 0.95rem;
-      color: #d0d2ea;
-    }
-
-    .text-block ul {
-      margin-left: 16px;
-    }
-
-    /* GALLERIA FOTOGRAFICA */
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
     }
 
-    .photo-card {
-      border-radius: 14px;
-      overflow: hidden;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid rgba(245,196,81,0.28);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.6);
+    .photo-item {
+      background: rgba(0,0,0,0.4);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.15);
     }
 
-    .photo-card img {
+    .photo-item img {
       width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: block;
+      border-radius: 10px;
+      margin-bottom: 10px;
     }
 
-    .photo-card p {
-      padding: 8px 10px 10px;
-      font-size: 0.9rem;
-      color: #d0d2ea;
+    .photo-note {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #bbb;
+      text-align: center;
     }
 
-    /* MOBILE: ottimizzazione smartphone */
-    @media (max-width: 768px) {
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 12px;
+    }
 
-      body {
-        padding: 12px 6px;
-      }
-
-      .gisa-menu {
-        padding: 10px 0;
-      }
-
-      .gisa-menu a {
-        display: inline-block;
-        margin: 0 8px 4px;
-        font-size: 0.75rem;
-        letter-spacing: 0.12em;
-      }
-
-      .page {
-        padding: 16px 8px 28px;
-      }
-
-      header {
-        margin-bottom: 20px;
-      }
-
-      h1 {
-        font-size: 1.4rem;
-        letter-spacing: 0.14em;
-      }
-
-      .badge-row {
-        font-size: 0.7rem;
-        padding: 4px 10px;
-      }
-
-      section {
-        margin-bottom: 28px;
-      }
-
-      .card {
-        padding: 16px 14px;
-      }
-
-      label {
-        font-size: 0.68rem;
-      }
-
-      input {
-        padding: 9px 10px;
-        font-size: 0.9rem;
-      }
-
-      button {
-        width: 100%;
-        font-size: 0.8rem;
-        letter-spacing: 0.13em;
-      }
-
-      .text-block p,
-      .text-block li {
-        font-size: 0.9rem;
-      }
-
-      .photo-card img {
-        height: 160px;
+    @media(max-width: 900px){
+      .photo-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -322,187 +127,101 @@
 
 <body>
 
-  <!-- MENU UNICO -->
-  <nav class="gisa-menu">
-    <a href="#verifica">Verifica</a>
-    <a href="#info">Informazioni</a>
-    <a href="#manuale">Manuale Operatori</a>
-    <a href="#foto">Fotografie</a>
+  <header>
+    <div class="banner">GLOBAL INTELLIGENCE & SECURITY AGENCY 🇮🇹</div>
+    <h1>G.I.S.A.</h1>
+  </header>
+
+  <nav>
+    <a href="#verifica">VERIFICA</a>
+    <a href="#info">INFORMAZIONI</a>
+    <a href="#manuale">MANUALE OPERATORI</a>
+    <a href="#foto">FOTOGRAFIE</a>
   </nav>
 
-  <div class="page">
-    <header>
-      <div class="badge-row">
-        <div class="flag flag-eu"></div>
-        <span>Global Intelligence &amp; Security Agency</span>
-        <div class="flag flag-it"></div>
+  <!-- ==========================================================
+       VERIFICA
+  =========================================================== -->
+  <section id="verifica" class="section">
+    <h2 class="section-title">Verifica Identità</h2>
+
+    <div class="card">
+      <p>Inserisci il codice ID riportato sul tesserino per verificare l'identità dell’operatore G.I.S.A.</p>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       INFORMAZIONI
+  =========================================================== -->
+  <section id="info" class="section">
+    <h2 class="section-title">Informazioni</h2>
+
+    <div class="card">
+      <div class="card-inner">
+        <p>Il sistema G.I.S.A. è un progetto dimostrativo creato per mostrare un modello di gestione
+           identitaria, controllo accessi e attribuzione operativa.</p>
       </div>
-      <h1>G.I.S.A.</h1>
-      <p class="subtitle">
-        Portale unico per la verifica dei tesserini, le informazioni generali, le linee guida operative e la galleria fotografica.
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       MANUALE OPERATORI
+  =========================================================== -->
+  <section id="manuale" class="section">
+    <h2 class="section-title">Manuale Operatori</h2>
+
+    <div class="card">
+      <p>Linee guida essenziali per la gestione operativa del tesserino G.I.S.A.</p>
+
+      <ul>
+        <li>Mantenere atteggiamento professionale e imparziale.</li>
+        <li>Controllare la validità del QR code.</li>
+        <li>Seguire le procedure operative di sicurezza.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOTOGRAFIE — Galleria immagini REALE
+  =========================================================== -->
+  <section id="foto" class="section">
+    <h2 class="section-title">FOTOGRAFIE</h2>
+
+    <div class="card">
+      <div class="card-inner photo-grid">
+
+        <!-- FOTO 1 -->
+        <div class="photo-item">
+          <img src="uploads/foto1.png" alt="Operatore G.I.S.A. in servizio">
+          <h3>Operatore G.I.S.A.</h3>
+          <p>Esempio di divisa operativa con patch ufficiale.</p>
+        </div>
+
+        <!-- FOTO 2 -->
+        <div class="photo-item">
+          <img src="uploads/foto2.png" alt="Tesserino G.I.S.A.">
+          <h3>Tesserino G.I.S.A.</h3>
+          <p>Patch operativa con stemma ufficiale dell'Agenzia.</p>
+        </div>
+
+        <!-- FOTO 3 -->
+        <div class="photo-item">
+          <img src="uploads/foto3.jpeg" alt="Scenario operativo dimostrativo">
+          <h3>Scenario Operativo</h3>
+          <p>Controllo accessi e verifica identità in ambiente protetto.</p>
+        </div>
+
+      </div>
+
+      <p class="photo-note">
+        Le immagini appartengono all’ambiente dimostrativo G.I.S.A. Caricate nella cartella <b>/uploads/</b>.
       </p>
-    </header>
+    </div>
+  </section>
 
-    <!-- SEZIONE VERIFICA -->
-    <section id="verifica">
-      <h2 class="section-title">Verifica tesserino</h2>
-      <div class="card">
-        <div id="status-pill" class="status-pill status-pill--idle">
-          ● IN ATTESA DI VERIFICA
-        </div>
+  <footer>
+    © 2025 G.I.S.A. — Sistema dimostrativo
+  </footer>
 
-        <div style="margin-bottom:10px; font-size:0.9rem;">
-          Inserisci il codice ID riportato sul tesserino per controllarne lo stato di validità.
-        </div>
-
-        <label for="id-tesserino">ID tesserino</label>
-        <input id="id-tesserino" placeholder="Es. 15FE012414" />
-
-        <label for="cognome">Cognome (opzionale)</label>
-        <input id="cognome" placeholder="Es. Macrì" />
-
-        <button onclick="verifica()">Verifica identità</button>
-
-        <div id="result" class="text-block"></div>
-
-        <p class="note">
-          Questo strumento ha finalità di verifica minima del documento presentato e non sostituisce in alcun modo i controlli di legge da parte delle autorità competenti.
-        </p>
-      </div>
-    </section>
-
-    <!-- SEZIONE INFORMAZIONI -->
-    <section id="info">
-      <h2 class="section-title">Informazioni</h2>
-      <div class="card text-block">
-        <p>
-          Questa sezione raccoglie le informazioni generali sul sistema G.I.S.A., sulle modalità di utilizzo del tesserino e sul funzionamento del portale di verifica.
-        </p>
-        <p>
-          L’indirizzo corretto del portale inizia con
-          <strong>https://gisa-identity.github.io/</strong>.  
-          Se sei arrivato qui scansionando un QR code, confronta sempre i dati visualizzati con quelli stampati sul tesserino.
-        </p>
-        <p>
-          I dati mostrati online sono ridotti al minimo per la tutela della privacy dell’operatore. Eventuali segnalazioni di abuso, clonazione o utilizzo improprio del marchio devono essere inoltrate ai referenti dell’ente.
-        </p>
-      </div>
-    </section>
-
-    <!-- SEZIONE MANUALE OPERATORI -->
-    <section id="manuale">
-      <h2 class="section-title">Manuale Operatori</h2>
-      <div class="card text-block">
-        <p><strong>1. Identità Operativa</strong></p>
-        <ul>
-          <li>Il tesserino deve essere sempre leggibile e in buono stato.</li>
-          <li>Va esibito solo quando necessario e richiesto.</li>
-          <li>Deve essere conservato con cura, come documento operativo.</li>
-        </ul>
-
-        <p><strong>2. Condotta Professionale</strong></p>
-        <ul>
-          <li>Mantenere un atteggiamento rispettoso e imparziale.</li>
-          <li>Tutelare la riservatezza delle informazioni acquisite.</li>
-          <li>Rappresentare l’ente in modo professionale in ogni contesto.</li>
-        </ul>
-
-        <p><strong>3. Procedure di Verifica</strong></p>
-        <ul>
-          <li>Controllare che il QR code rimandi al dominio corretto.</li>
-          <li>Confrontare nome, cognome e ID con il tesserino fisico.</li>
-          <li>In caso di incongruenze, applicare la procedura “Documento sospetto”.</li>
-        </ul>
-
-        <p class="note">
-          Il presente manuale è esemplificativo e può essere adattato alle linee guida interne dell’organizzazione che utilizza il sistema G.I.S.A.
-        </p>
-      </div>
-    </section>
-
-    <!-- SEZIONE FOTOGRAFIE -->
-    <section id="foto">
-      <h2 class="section-title">Fotografie</h2>
-      <div class="card">
-        <div class="photo-grid">
-
-          <!-- FOTO 1 -->
-          <div class="photo-card">
-            <img src="img/foto1.jpg" alt="Operatore G.I.S.A. in servizio">
-            <p>Operatore G.I.S.A. – esempio di divisa operativa.</p>
-          </div>
-
-          <!-- FOTO 2 -->
-          <div class="photo-card">
-            <img src="img/foto2.jpg" alt="Tesserino G.I.S.A.">
-            <p>Tesserino G.I.S.A. con QR per la verifica ufficiale.</p>
-          </div>
-
-          <!-- FOTO 3 -->
-          <div class="photo-card">
-            <img src="img/foto3.jpg" alt="Scenario operativo dimostrativo">
-            <p>Scenario operativo dimostrativo per attività di sicurezza.</p>
-          </div>
-
-        </div>
-        <p class="note" style="margin-top:10px;">
-          Le immagini hanno solo finalità illustrative. Puoi sostituirle con le tue foto ufficiali
-          caricandole nella cartella <code>img</code> della repository (nomi file: <code>foto1.jpg</code>, <code>foto2.jpg</code>, <code>foto3.jpg</code>).
-        </p>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    // Archivio demo: puoi aggiungere altri ID qui
-    const DB = {
-      "15FE012414": {
-        id: "15FE012414",
-        nome: "Giuliano",
-        cognome: "Macrì",
-        ruolo: "Operatore Speciale",
-        validita: "31/12/2027"
-      }
-    };
-
-    function verifica() {
-      const id = document.getElementById("id-tesserino").value.trim().toUpperCase();
-      const cognome = document.getElementById("cognome").value.trim().toLowerCase();
-      const box = document.getElementById("result");
-      const status = document.getElementById("status-pill");
-
-      if (!id) {
-        status.className = "status-pill status-pill--idle";
-        status.innerText = "● IN ATTESA DI VERIFICA";
-        box.innerHTML = "";
-        return;
-      }
-
-      const rec = DB[id];
-
-      if (!rec) {
-        status.className = "status-pill status-pill--fail";
-        status.innerText = "ID NON VALIDO / NON REGISTRATO";
-        box.innerHTML = "<p>Nessun tesserino corrispondente all’ID inserito.</p>";
-        return;
-      }
-
-      if (cognome && cognome !== rec.cognome.toLowerCase()) {
-        status.className = "status-pill status-pill--fail";
-        status.innerText = "DATI NON COERENTI";
-        box.innerHTML = "<p>L’ID esiste ma il cognome inserito non coincide con i dati registrati.</p>";
-        return;
-      }
-
-      status.className = "status-pill status-pill--ok";
-      status.innerText = "TESSERINO VALIDO";
-
-      box.innerHTML =
-        "<p><strong>ID:</strong> " + rec.id + "<br>" +
-        "<strong>Intestatario:</strong> " + rec.nome + " " + rec.cognome + "<br>" +
-        "<strong>Ruolo:</strong> " + rec.ruolo + "<br>" +
-        "<strong>Validità:</strong> " + rec.validita + "</p>";
-    }
-  </script>
 </body>
 </html>

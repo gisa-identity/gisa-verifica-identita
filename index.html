@@ -1,223 +1,374 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>G.I.S.A. – Verifica ufficiale identità</title>
-<meta name="description" content="Portale ufficiale di verifica tesserini G.I.S.A.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G.I.S.A. – Portale unico</title>
+  <meta name="description" content="Portale ufficiale G.I.S.A. per verifica tesserini, informazioni e manuale operatori.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --bg: #05070c;
-  --bg-card: #0f1119;
-  --accent: #f5c451;
-  --accent-soft: rgba(245,196,81,0.22);
-  --text: #f4f4f4;
-  --muted: #a1a5bb;
-  --danger: #ff4d4d;
-  --success: #2ecc71;
-  --border-radius: 16px;
-  --shadow-soft: 0 20px 50px rgba(0,0,0,0.65);
-}
+  <style>
+    :root {
+      --bg: #05070c;
+      --accent: #f5c451;
+      --text: #f4f4f4;
+      --muted: #a1a5bb;
+      --card: #0f1119;
+      --border: rgba(245,196,81,0.28);
+      --shadow: 0 20px 50px rgba(0,0,0,0.65);
+      --radius: 16px;
+    }
 
-* { margin:0; padding:0; box-sizing:border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family:"Montserrat", sans-serif;
-  background: radial-gradient(circle at top, #242b5c 0, #05070c 45%, #000 100%);
-  color:var(--text);
-  padding:24px 12px;
-}
+    body {
+      font-family: "Montserrat", system-ui, sans-serif;
+      background: radial-gradient(circle at top, #242b5c 0, #05070c 45%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
 
-/* MENU */
-.gisa-menu {
-  width:100%;
-  text-align:center;
-  padding:14px 0;
-  margin-bottom:20px;
-  background:rgba(0,0,0,0.55);
-  border-bottom:1px solid rgba(245,196,81,0.25);
-}
-.gisa-menu a {
-  margin:0 14px;
-  color:#f5c451;
-  text-transform:uppercase;
-  text-decoration:none;
-  font-weight:600;
-}
-.gisa-menu a:hover { color:#ffffff; }
+    a { color: var(--accent); }
 
-/* PAGE */
-.page {
-  max-width:900px;
-  margin:0 auto;
-}
+    /* MENU SUPERIORE */
+    .gisa-menu {
+      width: 100%;
+      text-align: center;
+      padding: 14px 0;
+      background: rgba(0,0,0,0.7);
+      border-bottom: 1px solid rgba(245,196,81,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(6px);
+    }
 
-/* HEADER */
-header {
-  text-align:center;
-  margin-bottom:26px;
-}
+    .gisa-menu a {
+      margin: 0 18px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
 
-.badge-row {
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:6px 14px;
-  background:linear-gradient(135deg, rgba(245,196,81,0.3), rgba(7,9,18,0.95));
-  border:1px solid rgba(245,196,81,0.5);
-  border-radius:999px;
-  font-size:11px;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
+    .gisa-menu a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(245,196,81,0.6);
+    }
 
-.flag { width:20px; height:13px; border-radius:2px; }
-.flag-eu { background:#1b2a7a; }
-.flag-it { background:linear-gradient(90deg,#009246 0 33%,#fff 33% 66%,#ce2b37 66%); }
+    /* LAYOUT PRINCIPALE */
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 12px 40px;
+    }
 
-h1 { font-size:2rem; letter-spacing:0.18em; }
-.subtitle { color:var(--muted); margin-top:6px; }
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
 
-/* CARD */
-.card {
-  padding:20px 18px;
-  border-radius:16px;
-  border:1px solid rgba(245,196,81,0.28);
-  background:radial-gradient(circle at top left,rgba(245,196,81,0.12),transparent 55%),
-             radial-gradient(circle at bottom right,rgba(20,26,56,0.9),rgba(4,5,10,0.96));
-  box-shadow:var(--shadow-soft);
-  margin-bottom:20px;
-}
+    .badge-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(245,196,81,0.3), rgba(7,9,18,0.95));
+      border-radius: 999px;
+      border: 1px solid rgba(245,196,81,0.5);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
 
-label {
-  text-transform:uppercase;
-  font-size:0.74rem;
-  color:var(--muted);
-  letter-spacing:0.13em;
-}
-input {
-  width:100%;
-  padding:10px 12px;
-  border-radius:8px;
-  background:rgba(0,0,0,0.45);
-  border:1px solid rgba(245,196,81,0.38);
-  color:var(--text);
-  font-size:0.95rem;
-  margin-bottom:16px;
-}
-button {
-  padding:10px 18px;
-  border:none;
-  border-radius:999px;
-  background:linear-gradient(135deg,#f5c451,#f2a933);
-  color:#1c1507;
-  font-weight:600;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  cursor:pointer;
-  margin-bottom:14px;
-}
+    .flag {
+      width: 20px;
+      height: 13px;
+      border-radius: 2px;
+    }
+    .flag-eu { background: #1b2a7a; }
+    .flag-it { background: linear-gradient(90deg,#009246 0 33%,#fff 33% 66%,#ce2b37 66%); }
 
-/* STATUS */
-.status-pill {
-  display:inline-flex;
-  padding:5px 10px;
-  border-radius:999px;
-  font-size:0.74rem;
-  letter-spacing:0.14em;
-  margin-bottom:10px;
-}
-.status-pill--idle { background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid rgba(255,255,255,0.1); }
-.status-pill--ok { background:rgba(46,204,113,0.15); color:#2ecc71; border:1px solid #2ecc714d; }
-.status-pill--fail { background:rgba(255,77,77,0.15); color:#ff4d4d; border:1px solid #ff4d4d80; }
-</style>
+    h1 {
+      font-size: 2.1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* SEZIONI */
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2.section-title {
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .card {
+      padding: 20px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at top left, rgba(245,196,81,0.12), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(20,26,56,0.9), rgba(4,5,10,0.96));
+      box-shadow: var(--shadow);
+    }
+
+    /* FORM VERIFICA */
+    label {
+      text-transform: uppercase;
+      font-size: 0.74rem;
+      color: var(--muted);
+      letter-spacing: 0.13em;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(245,196,81,0.38);
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg,#f5c451,#f2a933);
+      color: #1c1507;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-bottom: 14px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      margin-bottom: 10px;
+    }
+
+    .status-pill--idle {
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .status-pill--ok {
+      background: rgba(46,204,113,0.15);
+      color: #2ecc71;
+      border: 1px solid #2ecc714d;
+    }
+
+    .status-pill--fail {
+      background: rgba(255,77,77,0.15);
+      color: #ff4d4d;
+      border: 1px solid #ff4d4d80;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* TESTO SEMPLICE PER INFO / MANUALE */
+    .text-block p {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: #d0d2ea;
+    }
+
+    .text-block li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      color: #d0d2ea;
+    }
+
+    .text-block ul {
+      margin-left: 16px;
+    }
+  </style>
 </head>
 
 <body>
 
-<nav class="gisa-menu">
-  <a href="index.html">Verifica</a>
-  <a href="info.html">Informazioni</a>
-  <a href="manuale-operatori.html">Manuale Operatori</a>
-</nav>
+  <!-- MENU UNICO -->
+  <nav class="gisa-menu">
+    <a href="#verifica">Verifica</a>
+    <a href="#info">Informazioni</a>
+    <a href="#manuale">Manuale Operatori</a>
+  </nav>
 
-<div class="page">
+  <div class="page">
+    <header>
+      <div class="badge-row">
+        <div class="flag flag-eu"></div>
+        <span>Global Intelligence &amp; Security Agency</span>
+        <div class="flag flag-it"></div>
+      </div>
+      <h1>G.I.S.A.</h1>
+      <p class="subtitle">
+        Portale unico per la verifica dei tesserini, le informazioni generali e le linee guida operative.
+      </p>
+    </header>
 
-<header>
-  <div class="badge-row">
-    <div class="flag flag-eu"></div>
-    <span>Global Intelligence & Security Agency</span>
-    <div class="flag flag-it"></div>
+    <!-- SEZIONE VERIFICA -->
+    <section id="verifica">
+      <h2 class="section-title">Verifica tesserino</h2>
+      <div class="card">
+        <div id="status-pill" class="status-pill status-pill--idle">
+          ● IN ATTESA DI VERIFICA
+        </div>
+
+        <div style="margin-bottom:10px; font-size:0.9rem;">
+          Inserisci il codice ID riportato sul tesserino per controllarne lo stato di validità.
+        </div>
+
+        <label for="id-tesserino">ID tesserino</label>
+        <input id="id-tesserino" placeholder="Es. 15FE012414" />
+
+        <label for="cognome">Cognome (opzionale)</label>
+        <input id="cognome" placeholder="Es. Macrì" />
+
+        <button onclick="verifica()">Verifica identità</button>
+
+        <div id="result" class="text-block"></div>
+
+        <p class="note">
+          Questo strumento ha finalità di verifica minima del documento presentato e non sostituisce in alcun modo i controlli di legge da parte delle autorità competenti.
+        </p>
+      </div>
+    </section>
+
+    <!-- SEZIONE INFORMAZIONI -->
+    <section id="info">
+      <h2 class="section-title">Informazioni</h2>
+      <div class="card text-block">
+        <p>
+          Questa sezione raccoglie le informazioni generali sul sistema G.I.S.A., sulle modalità di utilizzo del tesserino e sul funzionamento del portale di verifica.
+        </p>
+        <p>
+          L’indirizzo corretto del portale inizia con
+          <strong>https://gisa-identity.github.io/</strong>.  
+          Se sei arrivato qui scansionando un QR code, confronta sempre i dati visualizzati con quelli stampati sul tesserino.
+        </p>
+        <p>
+          I dati mostrati online sono ridotti al minimo per la tutela della privacy dell’operatore. Eventuali segnalazioni di abuso, clonazione o utilizzo improprio del marchio devono essere inoltrate ai referenti dell’ente.
+        </p>
+      </div>
+    </section>
+
+    <!-- SEZIONE MANUALE OPERATORI -->
+    <section id="manuale">
+      <h2 class="section-title">Manuale Operatori</h2>
+      <div class="card text-block">
+        <p><strong>1. Identità Operativa</strong></p>
+        <ul>
+          <li>Il tesserino deve essere sempre leggibile e in buono stato.</li>
+          <li>Va esibito solo quando necessario e richiesto.</li>
+          <li>Deve essere conservato con cura, come documento operativo.</li>
+        </ul>
+
+        <p><strong>2. Condotta Professionale</strong></p>
+        <ul>
+          <li>Mantenere un atteggiamento rispettoso e imparziale.</li>
+          <li>Tutelare la riservatezza delle informazioni acquisite.</li>
+          <li>Rappresentare l’ente in modo professionale in ogni contesto.</li>
+        </ul>
+
+        <p><strong>3. Procedure di Verifica</strong></p>
+        <ul>
+          <li>Controllare che il QR code rimandi al dominio corretto.</li>
+          <li>Confrontare nome, cognome e ID con il tesserino fisico.</li>
+          <li>In caso di incongruenze, applicare la procedura “Documento sospetto”.</li>
+        </ul>
+
+        <p class="note">
+          Il presente manuale è esemplificativo e può essere adattato alle linee guida interne dell’organizzazione che utilizza il sistema G.I.S.A.
+        </p>
+      </div>
+    </section>
   </div>
 
-  <h1>G.I.S.A.</h1>
-  <p class="subtitle">Portale ufficiale per la verifica dei tesserini di identità operativa.</p>
-</header>
+  <script>
+    // Archivio demo: puoi aggiungere altre voci qui
+    const DB = {
+      "15FE012414": {
+        id: "15FE012414",
+        nome: "Giuliano",
+        cognome: "Macrì",
+        ruolo: "Operatore Speciale",
+        validita: "31/12/2027"
+      }
+    };
 
-<div class="card">
-  <div id="status-pill" class="status-pill status-pill--idle">● IN ATTESA DI VERIFICA</div>
+    function verifica() {
+      const id = document.getElementById("id-tesserino").value.trim().toUpperCase();
+      const cognome = document.getElementById("cognome").value.trim().toLowerCase();
+      const box = document.getElementById("result");
+      const status = document.getElementById("status-pill");
 
-  <h2>Verifica Tesserino</h2>
+      if (!id) {
+        status.className = "status-pill status-pill--idle";
+        status.innerText = "● IN ATTESA DI VERIFICA";
+        box.innerHTML = "";
+        return;
+      }
 
-  <label>ID Tesserino</label>
-  <input id="id-tesserino" placeholder="Es. 15FE012414">
+      const rec = DB[id];
 
-  <label>Cognome (opzionale)</label>
-  <input id="cognome" placeholder="Es. Macrì">
+      if (!rec) {
+        status.className = "status-pill status-pill--fail";
+        status.innerText = "ID NON VALIDO / NON REGISTRATO";
+        box.innerHTML = "<p>Nessun tesserino corrispondente all’ID inserito.</p>";
+        return;
+      }
 
-  <button onclick="verifica()">Verifica identità</button>
+      if (cognome && cognome !== rec.cognome.toLowerCase()) {
+        status.className = "status-pill status-pill--fail";
+        status.innerText = "DATI NON COERENTI";
+        box.innerHTML = "<p>L’ID esiste ma il cognome inserito non coincide con i dati registrati.</p>";
+        return;
+      }
 
-  <div id="result"></div>
-</div>
+      status.className = "status-pill status-pill--ok";
+      status.innerText = "TESSERINO VALIDO";
 
-</div>
-
-<script>
-const DB = {
-  "15FE012414": {
-    id:"15FE012414",
-    nome:"Giuliano",
-    cognome:"Macrì",
-    ruolo:"Operatore Speciale",
-    validita:"31/12/2027"
-  }
-};
-
-function verifica(){
-  const id = document.getElementById("id-tesserino").value.trim();
-  const cognome = document.getElementById("cognome").value.trim().toLowerCase();
-  const r = document.getElementById("result");
-  const status = document.getElementById("status-pill");
-
-  if(!DB[id]){
-    status.className="status-pill status-pill--fail";
-    status.innerText="ID NON VALIDO";
-    r.innerHTML="<p>Nessun tesserino corrispondente.</p>";
-    return;
-  }
-
-  if(cognome && cognome !== DB[id].cognome.toLowerCase()){
-    status.className="status-pill status-pill--fail";
-    status.innerText="COGNOME NON CORRISPONDENTE";
-    r.innerHTML="<p>I dati non coincidono.</p>";
-    return;
-  }
-
-  status.className="status-pill status-pill--ok";
-  status.innerText="TESSERINO VALIDO";
-
-  r.innerHTML =
-    "<p><strong>ID:</strong> "+DB[id].id+"<br>" +
-    "<strong>Intestatario:</strong> "+DB[id].nome+" "+DB[id].cognome+"<br>" +
-    "<strong>Ruolo:</strong> "+DB[id].ruolo+"<br>" +
-    "<strong>Validità:</strong> "+DB[id].validita+"</p>";
-}
-</script>
-
+      box.innerHTML =
+        "<p><strong>ID:</strong> " + rec.id + "<br>" +
+        "<strong>Intestatario:</strong> " + rec.nome + " " + rec.cognome + "<br>" +
+        "<strong>Ruolo:</strong> " + rec.ruolo + "<br>" +
+        "<strong>Validità:</strong> " + rec.validita + "</p>";
+    }
+  </script>
 </body>
 </html>

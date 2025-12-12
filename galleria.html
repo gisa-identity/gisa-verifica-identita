@@ -3,74 +3,71 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>G.I.S.A. — Fotografie</title>
-  <style>
-    :root{--gold:#f2c14d;--text:#e9ecff;--muted:#b8bfd8;--line:rgba(242,193,77,.25);--shadow:0 18px 40px rgba(0,0,0,.55);--radius:18px;}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background: radial-gradient(1200px 600px at 50% 0%, #121a35 0%, rgba(18,26,53,0) 55%),
-                  linear-gradient(180deg, #06070b 0%, #04050a 60%, #050612 100%);
-      color:var(--text);}
-    .top{padding:34px 16px 10px;text-align:center}
-    .pill{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.25);color:var(--muted);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
-    .logo{margin:14px 0 10px;font-size:44px;letter-spacing:8px;font-weight:900}
-    .menu-wrap{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
-    .menu{max-width:1100px;margin:0 auto;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:12px 10px}
-    .menu a{color:var(--gold);text-decoration:none;font-weight:900;letter-spacing:.12em;font-size:13px;text-transform:uppercase;padding:8px 10px;border-radius:999px}
-    .menu a:hover{background:rgba(242,193,77,.10);border:1px solid rgba(242,193,77,.18);padding:7px 9px}
-    .menu a.active{background:rgba(242,193,77,.14);border:1px solid rgba(242,193,77,.35)}
-    .page{max-width:1100px;margin:0 auto;padding:28px 16px 60px}
-    .title{margin:22px 0 16px;text-align:center;color:var(--gold);font-weight:900;letter-spacing:.14em;font-size:28px;text-transform:uppercase}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);border:1px solid rgba(255,255,255,.10);border-bottom:1px solid rgba(242,193,77,.22);box-shadow:var(--shadow);border-radius:var(--radius);padding:18px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
-    .tile{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.10);border-bottom:1px solid rgba(242,193,77,.22);border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.45)}
-    .tile img{width:100%;height:220px;object-fit:cover;display:block;background:#0b0c12}
-    .cap{padding:14px}
-    .cap h3{margin:0 0 6px;font-size:16px;color:#fff}
-    .cap p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.45}
-    .note{text-align:center;color:rgba(233,236,255,.55);font-size:12.5px;margin-top:12px}
-    @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.logo{font-size:38px;letter-spacing:6px}}
-    @media (max-width:520px){.grid{grid-template-columns:1fr}.tile img{height:240px}}
-  </style>
+  <title>G.I.S.A. – Fotografie</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="top">
-    <div class="pill">Global Intelligence &amp; Security Agency</div>
-    <div class="logo">G.I.S.A.</div>
-  </div>
 
-  <div class="menu-wrap">
-    <nav class="menu">
-      <a href="index.html">Verifica</a>
-      <a href="info.html">Informazioni</a>
-      <a href="manuale-operatori.html">Manuale Operatori</a>
-      <a class="active" href="galleria.html">Fotografie</a>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="pill"><span class="dot"></span> GLOBAL INTELLIGENCE & SECURITY AGENCY</span>
+      <h1 class="h1">G.I.S.A.</h1>
+    </div>
+    <nav class="nav">
+      <a href="index.html">VERIFICA</a>
+      <a href="info.html">INFORMAZIONI</a>
+      <a href="manuale-operatori.html">MANUALE OPERATORI</a>
+      <a class="active" href="galleria.html">FOTOGRAFIE</a>
     </nav>
   </div>
+</header>
 
-  <main class="page">
-    <h2 class="title">Fotografie</h2>
+<main class="wrap">
+  <section class="hero">
+    <div class="badge">Archivio immagini</div>
+    <p class="subtitle">Immagini dimostrative. Per aggiornare: carica i file in <b>/uploads/</b> e mantieni i nomi.</p>
+  </section>
 
-    <div class="card">
-      <div class="grid">
-        <div class="tile">
-          <img src="uploads/foto1.png" alt="Foto 1">
-          <div class="cap"><h3>Immagine 1</h3><p>Contenuto dimostrativo G.I.S.A.</p></div>
-        </div>
-        <div class="tile">
-          <img src="uploads/foto2.png" alt="Foto 2">
-          <div class="cap"><h3>Immagine 2</h3><p>Contenuto dimostrativo G.I.S.A.</p></div>
-        </div>
-        <div class="tile">
-          <img src="uploads/foto3.png" alt="Foto 3">
-          <div class="cap"><h3>Immagine 3</h3><p>Contenuto dimostrativo G.I.S.A.</p></div>
+  <h2 class="section-title">FOTOGRAFIE</h2>
+
+  <div class="card">
+    <div class="gallery">
+      <div class="gitem">
+        <img src="uploads/foto1.png" alt="Operatore G.I.S.A." onerror="this.src='uploads/foto1.jpg'">
+        <div class="gcap">
+          <h3>Operatore G.I.S.A.</h3>
+          <p>Esempio di divisa operativa con patch ufficiale.</p>
         </div>
       </div>
 
-      <div class="note">
-        Se non vedi le immagini: controlla i nomi file in <b>/uploads</b> e aggiorna con <b>Ctrl+F5</b>.
+      <div class="gitem">
+        <img src="uploads/foto2.png" alt="Tesserino G.I.S.A." onerror="this.src='uploads/foto2.jpg'">
+        <div class="gcap">
+          <h3>Tesserino G.I.S.A.</h3>
+          <p>Materiale dimostrativo per scenario “controllo accessi”.</p>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <img src="uploads/foto3.png" alt="Scenario operativo" onerror="this.src='uploads/foto3.jpg'">
+        <div class="gcap">
+          <h3>Scenario Operativo</h3>
+          <p>Controllo accessi e verifica identità in ambiente protetto.</p>
+        </div>
       </div>
     </div>
-  </main>
+
+    <p class="small" style="margin-top:14px;">
+      Se non vedi le immagini: controlla che siano davvero in <b>/uploads/</b> e che il nome rispetti maiuscole/minuscole.
+      (GitHub Pages è “pignolo”: <i>foto1.png</i> è diverso da <i>Foto1.png</i>.)
+    </p>
+  </div>
+
+  <div class="footer">
+    Home: https://gisa-identity.github.io/gisa-verifica-identita/
+  </div>
+</main>
+
 </body>
 </html>

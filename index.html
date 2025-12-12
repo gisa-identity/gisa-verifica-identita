@@ -3,133 +3,113 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>G.I.S.A. — Verifica</title>
-  <style>
-    :root{
-      --bg:#07080c; --gold:#f2c14d; --text:#e9ecff; --muted:#b8bfd8;
-      --line:rgba(242,193,77,.25); --shadow:0 18px 40px rgba(0,0,0,.55);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background: radial-gradient(1200px 600px at 50% 0%, #121a35 0%, rgba(18,26,53,0) 55%),
-                  linear-gradient(180deg, #06070b 0%, #04050a 60%, #050612 100%);
-      color:var(--text);
-    }
-    .top{padding:34px 16px 10px; text-align:center;}
-    .pill{display:inline-flex; gap:10px; align-items:center; padding:8px 14px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.10); background:rgba(0,0,0,.25); color:var(--muted);
-      font-size:12px; letter-spacing:.16em; text-transform:uppercase;}
-    .logo{margin:14px 0 10px; font-size:44px; letter-spacing:8px; font-weight:900;}
-    .menu-wrap{position:sticky; top:0; z-index:20; background:rgba(0,0,0,.55); backdrop-filter:blur(10px);
-      border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05);}
-    .menu{max-width:1100px; margin:0 auto; display:flex; justify-content:center; gap:16px; flex-wrap:wrap; padding:12px 10px;}
-    .menu a{color:var(--gold); text-decoration:none; font-weight:900; letter-spacing:.12em; font-size:13px;
-      text-transform:uppercase; padding:8px 10px; border-radius:999px;}
-    .menu a:hover{background:rgba(242,193,77,.10); border:1px solid rgba(242,193,77,.18); padding:7px 9px;}
-    .menu a.active{background:rgba(242,193,77,.14); border:1px solid rgba(242,193,77,.35);}
-    .page{max-width:1100px; margin:0 auto; padding:28px 16px 60px;}
-    .title{margin:22px 0 16px; text-align:center; color:var(--gold); font-weight:900; letter-spacing:.14em; font-size:28px; text-transform:uppercase;}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
-      border:1px solid rgba(255,255,255,.10); border-bottom:1px solid rgba(242,193,77,.22);
-      box-shadow:var(--shadow); border-radius:var(--radius); padding:18px;}
-    .inner{border-radius:calc(var(--radius) - 6px); background:radial-gradient(700px 300px at 50% 0%, rgba(242,193,77,.06) 0%, rgba(0,0,0,0) 65%);
-      padding:18px;}
-    .sub{color:var(--muted); margin:0 0 14px; line-height:1.55; font-size:14.5px;}
-    .form{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:10px;}
-    .fg{display:flex; flex-direction:column; gap:7px;}
-    label{font-size:12px; letter-spacing:.9px; color:#d7dcff; text-transform:uppercase;}
-    input{width:100%; padding:12px; border-radius:12px; background:rgba(0,0,0,.35);
-      border:1px solid rgba(242,193,77,.22); outline:none; color:var(--text); font-size:15px;}
-    input:focus{border-color:rgba(242,193,77,.55); box-shadow:0 0 0 3px rgba(242,193,77,.12);}
-    .btn{grid-column:1/-1; border:none; border-radius:999px; padding:12px 16px; cursor:pointer;
-      background:linear-gradient(180deg, var(--gold) 0%, #d9a83b 100%); color:#0b0b0f;
-      font-weight:900; letter-spacing:1px; text-transform:uppercase;}
-    .res{margin-top:14px; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.25); color:var(--muted); line-height:1.5; font-size:14px;}
-    .ok{border-color:rgba(64,212,140,.35); color:#c9ffe5;}
-    .warn{border-color:rgba(242,193,77,.35); color:#fff0c9;}
-    .err{border-color:rgba(255,92,92,.35); color:#ffd1d1;}
-    footer{text-align:center; padding:18px; color:rgba(233,236,255,.45); font-size:12px;}
-    @media (max-width:900px){ .form{grid-template-columns:1fr;} .logo{font-size:38px; letter-spacing:6px;} }
-  </style>
+  <title>G.I.S.A. – Portale Ufficiale</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="top">
-    <div class="pill">Global Intelligence &amp; Security Agency</div>
-    <div class="logo">G.I.S.A.</div>
-  </div>
 
-  <div class="menu-wrap">
-    <nav class="menu">
-      <a class="active" href="index.html">Verifica</a>
-      <a href="info.html">Informazioni</a>
-      <a href="manuale-operatori.html">Manuale Operatori</a>
-      <a href="galleria.html">Fotografie</a>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="pill"><span class="dot"></span> GLOBAL INTELLIGENCE & SECURITY AGENCY</span>
+      <h1 class="h1">G.I.S.A.</h1>
+    </div>
+
+    <nav class="nav">
+      <a class="active" href="index.html">VERIFICA</a>
+      <a href="info.html">INFORMAZIONI</a>
+      <a href="manuale-operatori.html">MANUALE OPERATORI</a>
+      <a href="galleria.html">FOTOGRAFIE</a>
     </nav>
   </div>
+</header>
 
-  <main class="page">
-    <h2 class="title">Verifica Identità</h2>
+<main class="wrap">
+  <section class="hero">
+    <div class="badge">Portale dimostrativo • verifica minima tramite ID</div>
+    <p class="subtitle">Inserisci il codice ID riportato sul tesserino per visualizzare lo stato e i dati minimi associati.</p>
+  </section>
+
+  <h2 class="section-title">VERIFICA IDENTITÀ</h2>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="badge">IN ATTESA DI VERIFICA</div>
+
+      <label for="id">ID TESSERINO</label>
+      <input id="id" placeholder="Es. 15FE012414" autocomplete="off" />
+
+      <label for="cognome">COGNOME (opzionale)</label>
+      <input id="cognome" placeholder="Es. Macrì" autocomplete="off" />
+
+      <button class="btn" id="btn">VERIFICA IDENTITÀ</button>
+
+      <div id="out" class="result" style="display:none;"></div>
+
+      <p class="small" style="margin-top:12px;">
+        Questo strumento ha finalità dimostrativa e di verifica minima del documento presentato e non sostituisce in alcun modo i controlli delle autorità competenti.
+      </p>
+    </div>
 
     <div class="card">
-      <div class="inner">
-        <p class="sub">Inserisci il codice ID riportato sul tesserino per verificare l’identità dell’operatore (demo).</p>
+      <h3 style="margin:0 0 10px; color:var(--gold); letter-spacing:.08em;">TESSERINO (SENZA QR / FOTO)</h3>
+      <p class="small" style="margin-top:0;">
+        Se vuoi mostrare l’immagine del tesserino “pulito”, caricala come <b>/uploads/tesserino.png</b>.
+      </p>
 
-        <form class="form" id="verifyForm">
-          <div class="fg">
-            <label for="cardId">ID tesserino</label>
-            <input id="cardId" placeholder="Es. 15FE012414" required>
-          </div>
-          <div class="fg">
-            <label for="surname">Cognome (opzionale)</label>
-            <input id="surname" placeholder="Es. Macrì">
-          </div>
-          <button class="btn" type="submit">Verifica identità</button>
-        </form>
-
-        <div id="verifyResult" class="res">Nessuna verifica effettuata.</div>
+      <div class="gitem" style="margin-top:10px;">
+        <img src="uploads/tesserino.png" alt="Tesserino G.I.S.A. (demo)" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback').style.display='block';">
+        <div class="fallback gcap" style="display:none;">
+          <h3>Nessuna immagine trovata</h3>
+          <p>Carica <b>uploads/tesserino.png</b> per mostrarla qui.</p>
+        </div>
       </div>
     </div>
-  </main>
+  </div>
 
-  <footer>© 2025 G.I.S.A. — Portale dimostrativo</footer>
+  <div class="footer">
+    Indirizzo del portale: https://gisa-identity.github.io/gisa-verifica-identita/
+  </div>
+</main>
 
-  <script>
-    // DEMO: aggiungi qui gli ID che vuoi gestire
-    const demoIds = {
-      "15FE012414": "Giuliano Macrì"
-    };
+<script>
+/* Database demo (puoi ampliarlo quando vuoi) */
+const DB = {
+  "15FE012414": { stato:"VALIDO (DEMO)", nome:"Operatore", cognome:"Esempio", ruolo:"Operatore di Sicurezza", note:"Record dimostrativo." }
+};
 
-    const form = document.getElementById("verifyForm");
-    const result = document.getElementById("verifyResult");
+const $ = (id) => document.getElementById(id);
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const id = document.getElementById("cardId").value.trim();
-      const s = document.getElementById("surname").value.trim().toLowerCase();
+$("btn").addEventListener("click", () => {
+  const id = $("id").value.trim();
+  const cog = $("cognome").value.trim().toLowerCase();
 
-      if (!id) {
-        result.className = "res err";
-        result.textContent = "Inserisci un ID tesserino.";
-        return;
-      }
+  const out = $("out");
+  out.style.display = "block";
 
-      if (demoIds[id]) {
-        const name = demoIds[id];
-        if (!s || name.toLowerCase().includes(s)) {
-          result.className = "res ok";
-          result.textContent = `Tesserino valido. ID ${id} associato a ${name}.`;
-        } else {
-          result.className = "res warn";
-          result.textContent = "ID trovato, ma il cognome non corrisponde.";
-        }
-      } else {
-        result.className = "res err";
-        result.textContent = "Nessun tesserino corrispondente. Controlla il codice.";
-      }
-    });
-  </script>
+  if(!id){
+    out.innerHTML = "Inserisci un <b>ID</b> per procedere.";
+    return;
+  }
+
+  const rec = DB[id];
+  if(!rec){
+    out.innerHTML = "Esito: <b>NON TROVATO</b> — ID non presente nel database dimostrativo.";
+    return;
+  }
+
+  if(cog && rec.cognome && rec.cognome.toLowerCase() !== cog){
+    out.innerHTML = "Esito: <b>DATI NON COINCIDENTI</b> — cognome inserito diverso dal record.";
+    return;
+  }
+
+  out.innerHTML =
+    "Esito: <b>" + rec.stato + "</b><br>" +
+    "Nome: <b>" + rec.nome + " " + rec.cognome + "</b><br>" +
+    "Ruolo: <b>" + rec.ruolo + "</b><br>" +
+    "Note: " + rec.note;
+});
+</script>
+
 </body>
 </html>

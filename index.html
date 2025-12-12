@@ -3,422 +3,133 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>G.I.S.A. — Portale Ufficiale</title>
-
+  <title>G.I.S.A. — Verifica</title>
   <style>
     :root{
-      --bg:#07080c;
-      --panel:#0e1220;
-      --panel2:#0a0c14;
-      --gold:#f2c14d;
-      --gold2:#caa24c;
-      --text:#e9ecff;
-      --muted:#b8bfd8;
-      --line:rgba(242,193,77,.25);
-      --shadow: 0 18px 40px rgba(0,0,0,.55);
+      --bg:#07080c; --gold:#f2c14d; --text:#e9ecff; --muted:#b8bfd8;
+      --line:rgba(242,193,77,.25); --shadow:0 18px 40px rgba(0,0,0,.55);
       --radius:18px;
     }
-
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(1200px 600px at 50% 0%, #121a35 0%, rgba(18,26,53,0) 55%),
-        radial-gradient(800px 400px at 20% 20%, rgba(242,193,77,.06) 0%, rgba(0,0,0,0) 60%),
-        linear-gradient(180deg, #06070b 0%, #04050a 60%, #050612 100%);
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1200px 600px at 50% 0%, #121a35 0%, rgba(18,26,53,0) 55%),
+                  linear-gradient(180deg, #06070b 0%, #04050a 60%, #050612 100%);
       color:var(--text);
     }
-
-    /* Header */
-    .top-wrap{
-      padding: 34px 16px 10px;
-      text-align:center;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.25);
-      color:#d6dcff;
-      font-size:12px;
-      letter-spacing:.6px;
-      text-transform:uppercase;
-    }
-    .logo{
-      margin:14px 0 10px;
-      font-size:44px;
-      letter-spacing:8px;
-      font-weight:800;
-      text-shadow: 0 2px 12px rgba(0,0,0,.6);
-    }
-
-    /* Menu */
-    .menu-wrap{
-      position:sticky;
-      top:0;
-      z-index:20;
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(10px);
-      border-top:1px solid rgba(255,255,255,.05);
-      border-bottom:1px solid rgba(255,255,255,.05);
-    }
-    .gisa-menu{
-      max-width:1100px;
-      margin:0 auto;
-      display:flex;
-      justify-content:center;
-      gap:26px;
-      padding:14px 10px;
-      flex-wrap:wrap;
-    }
-    .gisa-menu a{
-      color:var(--gold);
-      text-decoration:none;
-      font-weight:800;
-      letter-spacing:1px;
-      font-size:14px;
-      padding:8px 10px;
-      border-radius:999px;
-    }
-    .gisa-menu a:hover{
-      background: rgba(242,193,77,.10);
-      border:1px solid rgba(242,193,77,.18);
-      padding:7px 9px;
-    }
-
-    /* Layout */
-    .page{
-      max-width:1100px;
-      margin:0 auto;
-      padding: 28px 16px 60px;
-    }
-
-    .section-title{
-      margin:38px 0 16px;
-      text-align:center;
-      color:var(--gold);
-      font-weight:900;
-      letter-spacing:1.4px;
-      font-size:28px;
-      text-transform:uppercase;
-    }
-
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
-      border:1px solid rgba(255,255,255,.10);
-      border-bottom:1px solid rgba(242,193,77,.22);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      padding:18px;
-    }
-    .card-inner{
-      border-radius: calc(var(--radius) - 6px);
-      background: radial-gradient(700px 300px at 50% 0%, rgba(242,193,77,.06) 0%, rgba(0,0,0,0) 65%);
-      padding:18px;
-    }
-    .card-subtitle{
-      color:var(--muted);
-      margin:0 0 14px;
-      line-height:1.55;
-      font-size:14.5px;
-    }
-
-    /* Form */
-    .verify-form{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-top:10px;
-    }
-    .form-group{
-      display:flex;
-      flex-direction:column;
-      gap:7px;
-    }
-    label{
-      font-size:12px;
-      letter-spacing:.9px;
-      color:#d7dcff;
-      text-transform:uppercase;
-    }
-    input{
-      width:100%;
-      padding:12px 12px;
-      border-radius:12px;
-      background: rgba(0,0,0,.35);
-      border:1px solid rgba(242,193,77,.22);
-      outline:none;
-      color:var(--text);
-      font-size:15px;
-    }
-    input:focus{
-      border-color: rgba(242,193,77,.55);
-      box-shadow: 0 0 0 3px rgba(242,193,77,.12);
-    }
-
-    .btn-primary{
-      grid-column: 1 / -1;
-      border:none;
-      border-radius:999px;
-      padding:12px 16px;
-      background: linear-gradient(180deg, var(--gold) 0%, #d9a83b 100%);
-      color:#0b0b0f;
-      font-weight:900;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      cursor:pointer;
-    }
-    .btn-primary:hover{
-      filter: brightness(1.03);
-    }
-
-    .verify-result{
-      margin-top:14px;
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.25);
-      color: var(--muted);
-      line-height:1.5;
-      font-size:14px;
-    }
-    .result-ok{ border-color: rgba(64, 212, 140, .35); color:#c9ffe5; }
-    .result-warning{ border-color: rgba(242,193,77,.35); color:#fff0c9; }
-    .result-error{ border-color: rgba(255, 92, 92, .35); color:#ffd1d1; }
-
-    /* Manuale */
-    .text-block{
-      color:var(--muted);
-      line-height:1.65;
-      font-size:15px;
-    }
-    .text-block ul{
-      margin:10px 0 0 18px;
-    }
-    .text-block li{
-      margin:6px 0;
-    }
-
-    /* Gallery */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:16px;
-      margin-top:10px;
-    }
-    .tile{
-      background: rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.10);
-      border-bottom:1px solid rgba(242,193,77,.22);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: 0 10px 26px rgba(0,0,0,.45);
-    }
-    .tile img{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-      display:block;
-      background:#0b0c12;
-    }
-    .tile .cap{
-      padding:14px 14px 16px;
-    }
-    .tile .cap h3{
-      margin:0 0 6px;
-      font-size:16px;
-      color:#fff;
-    }
-    .tile .cap p{
-      margin:0;
-      font-size:13.5px;
-      color:var(--muted);
-      line-height:1.45;
-    }
-
-    .foot-note{
-      margin-top:10px;
-      text-align:center;
-      color: rgba(233,236,255,.55);
-      font-size:12.5px;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr 1fr; }
-      .verify-form{ grid-template-columns: 1fr; }
-      .logo{ font-size:38px; letter-spacing:6px; }
-    }
-    @media (max-width: 520px){
-      .grid{ grid-template-columns: 1fr; }
-      .tile img{ height:240px; }
-      .logo{ font-size:34px; letter-spacing:5px; }
-    }
+    .top{padding:34px 16px 10px; text-align:center;}
+    .pill{display:inline-flex; gap:10px; align-items:center; padding:8px 14px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.10); background:rgba(0,0,0,.25); color:var(--muted);
+      font-size:12px; letter-spacing:.16em; text-transform:uppercase;}
+    .logo{margin:14px 0 10px; font-size:44px; letter-spacing:8px; font-weight:900;}
+    .menu-wrap{position:sticky; top:0; z-index:20; background:rgba(0,0,0,.55); backdrop-filter:blur(10px);
+      border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05);}
+    .menu{max-width:1100px; margin:0 auto; display:flex; justify-content:center; gap:16px; flex-wrap:wrap; padding:12px 10px;}
+    .menu a{color:var(--gold); text-decoration:none; font-weight:900; letter-spacing:.12em; font-size:13px;
+      text-transform:uppercase; padding:8px 10px; border-radius:999px;}
+    .menu a:hover{background:rgba(242,193,77,.10); border:1px solid rgba(242,193,77,.18); padding:7px 9px;}
+    .menu a.active{background:rgba(242,193,77,.14); border:1px solid rgba(242,193,77,.35);}
+    .page{max-width:1100px; margin:0 auto; padding:28px 16px 60px;}
+    .title{margin:22px 0 16px; text-align:center; color:var(--gold); font-weight:900; letter-spacing:.14em; font-size:28px; text-transform:uppercase;}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+      border:1px solid rgba(255,255,255,.10); border-bottom:1px solid rgba(242,193,77,.22);
+      box-shadow:var(--shadow); border-radius:var(--radius); padding:18px;}
+    .inner{border-radius:calc(var(--radius) - 6px); background:radial-gradient(700px 300px at 50% 0%, rgba(242,193,77,.06) 0%, rgba(0,0,0,0) 65%);
+      padding:18px;}
+    .sub{color:var(--muted); margin:0 0 14px; line-height:1.55; font-size:14.5px;}
+    .form{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:10px;}
+    .fg{display:flex; flex-direction:column; gap:7px;}
+    label{font-size:12px; letter-spacing:.9px; color:#d7dcff; text-transform:uppercase;}
+    input{width:100%; padding:12px; border-radius:12px; background:rgba(0,0,0,.35);
+      border:1px solid rgba(242,193,77,.22); outline:none; color:var(--text); font-size:15px;}
+    input:focus{border-color:rgba(242,193,77,.55); box-shadow:0 0 0 3px rgba(242,193,77,.12);}
+    .btn{grid-column:1/-1; border:none; border-radius:999px; padding:12px 16px; cursor:pointer;
+      background:linear-gradient(180deg, var(--gold) 0%, #d9a83b 100%); color:#0b0b0f;
+      font-weight:900; letter-spacing:1px; text-transform:uppercase;}
+    .res{margin-top:14px; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.25); color:var(--muted); line-height:1.5; font-size:14px;}
+    .ok{border-color:rgba(64,212,140,.35); color:#c9ffe5;}
+    .warn{border-color:rgba(242,193,77,.35); color:#fff0c9;}
+    .err{border-color:rgba(255,92,92,.35); color:#ffd1d1;}
+    footer{text-align:center; padding:18px; color:rgba(233,236,255,.45); font-size:12px;}
+    @media (max-width:900px){ .form{grid-template-columns:1fr;} .logo{font-size:38px; letter-spacing:6px;} }
   </style>
 </head>
-
 <body>
-  <div class="top-wrap">
-    <div class="pill">GLOBAL INTELLIGENCE &amp; SECURITY AGENCY <span style="opacity:.8">IT</span></div>
+  <div class="top">
+    <div class="pill">Global Intelligence &amp; Security Agency</div>
     <div class="logo">G.I.S.A.</div>
   </div>
 
   <div class="menu-wrap">
-    <nav class="gisa-menu">
-      <a href="#verifica">VERIFICA</a>
-      <a href="#info">INFORMAZIONI</a>
-      <a href="#manuale">MANUALE OPERATORI</a>
-      <a href="#foto">FOTOGRAFIE</a>
+    <nav class="menu">
+      <a class="active" href="index.html">Verifica</a>
+      <a href="info.html">Informazioni</a>
+      <a href="manuale-operatori.html">Manuale Operatori</a>
+      <a href="galleria.html">Fotografie</a>
     </nav>
   </div>
 
   <main class="page">
+    <h2 class="title">Verifica Identità</h2>
 
-    <!-- VERIFICA -->
-    <section id="verifica">
-      <h2 class="section-title">VERIFICA IDENTITÀ</h2>
+    <div class="card">
+      <div class="inner">
+        <p class="sub">Inserisci il codice ID riportato sul tesserino per verificare l’identità dell’operatore (demo).</p>
 
-      <div class="card">
-        <div class="card-inner">
-          <p class="card-subtitle">
-            Inserisci il codice ID riportato sul tesserino per verificare l'identità dell'operatore G.I.S.A.
-          </p>
-
-          <form class="verify-form" id="verifyForm">
-            <div class="form-group">
-              <label for="cardId">ID TESSERINO</label>
-              <input type="text" id="cardId" name="cardId" placeholder="Es. 15FE012414" required>
-            </div>
-
-            <div class="form-group">
-              <label for="surname">COGNOME (opzionale)</label>
-              <input type="text" id="surname" name="surname" placeholder="Es. Macrì">
-            </div>
-
-            <button type="submit" class="btn-primary">VERIFICA IDENTITÀ</button>
-          </form>
-
-          <div id="verifyResult" class="verify-result">
-            Nessuna verifica effettuata. Inserisci un ID tesserino e premi “Verifica identità”.
+        <form class="form" id="verifyForm">
+          <div class="fg">
+            <label for="cardId">ID tesserino</label>
+            <input id="cardId" placeholder="Es. 15FE012414" required>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- INFO -->
-    <section id="info">
-      <h2 class="section-title">INFORMAZIONI</h2>
-
-      <div class="card">
-        <div class="card-inner">
-          <p class="card-subtitle text-block">
-            Il sistema G.I.S.A. è un progetto dimostrativo creato per mostrare un modello di gestione identitaria,
-            controllo accessi e attribuzione operativa.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- MANUALE -->
-    <section id="manuale">
-      <h2 class="section-title">MANUALE OPERATORI</h2>
-
-      <div class="card">
-        <div class="card-inner text-block">
-          <p style="margin-top:0">
-            Linee guida essenziali per la gestione operativa del tesserino G.I.S.A.
-          </p>
-          <ul>
-            <li>Mantenere atteggiamento professionale e imparziale.</li>
-            <li>Controllare la validità del QR code e il dominio di destinazione.</li>
-            <li>Confrontare sempre i dati visualizzati con quelli stampati sul tesserino.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOTO -->
-    <section id="foto">
-      <h2 class="section-title">FOTOGRAFIE</h2>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="grid">
-            <div class="tile">
-              <img src="uploads/foto1.png" alt="Operatore G.I.S.A.">
-              <div class="cap">
-                <h3>Operatore G.I.S.A.</h3>
-                <p>Esempio di divisa operativa con patch ufficiale.</p>
-              </div>
-            </div>
-
-            <div class="tile">
-              <img src="uploads/foto2.png" alt="Tesserino G.I.S.A.">
-              <div class="cap">
-                <h3>Tesserino G.I.S.A.</h3>
-                <p>Materiale dimostrativo per verifica ufficiale.</p>
-              </div>
-            </div>
-
-            <div class="tile">
-              <img src="uploads/foto3.png" alt="Scenario operativo">
-              <div class="cap">
-                <h3>Scenario Operativo</h3>
-                <p>Controllo accessi e verifica identità in ambiente protetto.</p>
-              </div>
-            </div>
+          <div class="fg">
+            <label for="surname">Cognome (opzionale)</label>
+            <input id="surname" placeholder="Es. Macrì">
           </div>
+          <button class="btn" type="submit">Verifica identità</button>
+        </form>
 
-          <div class="foot-note">
-            Immagini caricate nella cartella <b>/uploads/</b>. Nomi attesi: <b>foto1.png</b>, <b>foto2.png</b>, <b>foto3.png</b>.
-          </div>
-        </div>
+        <div id="verifyResult" class="res">Nessuna verifica effettuata.</div>
       </div>
-    </section>
-
+    </div>
   </main>
 
+  <footer>© 2025 G.I.S.A. — Portale dimostrativo</footer>
+
   <script>
-    // DATABASE DEMO (puoi aggiungere ID qui)
+    // DEMO: aggiungi qui gli ID che vuoi gestire
     const demoIds = {
       "15FE012414": "Giuliano Macrì"
     };
 
-    const form = document.getElementById('verifyForm');
-    const resultBox = document.getElementById('verifyResult');
+    const form = document.getElementById("verifyForm");
+    const result = document.getElementById("verifyResult");
 
-    form.addEventListener('submit', function (e) {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-
-      const id = document.getElementById('cardId').value.trim();
-      const surname = document.getElementById('surname').value.trim().toLowerCase();
+      const id = document.getElementById("cardId").value.trim();
+      const s = document.getElementById("surname").value.trim().toLowerCase();
 
       if (!id) {
-        resultBox.textContent = "Inserisci un ID tesserino.";
-        resultBox.className = "verify-result result-error";
+        result.className = "res err";
+        result.textContent = "Inserisci un ID tesserino.";
         return;
       }
 
       if (demoIds[id]) {
         const name = demoIds[id];
-        if (!surname || name.toLowerCase().includes(surname)) {
-          resultBox.textContent = `Tesserino valido. ID ${id} associato a ${name}.`;
-          resultBox.className = "verify-result result-ok";
+        if (!s || name.toLowerCase().includes(s)) {
+          result.className = "res ok";
+          result.textContent = `Tesserino valido. ID ${id} associato a ${name}.`;
         } else {
-          resultBox.textContent = "ID trovato, ma il cognome non corrisponde.";
-          resultBox.className = "verify-result result-warning";
+          result.className = "res warn";
+          result.textContent = "ID trovato, ma il cognome non corrisponde.";
         }
       } else {
-        resultBox.textContent = "Nessun tesserino corrispondente. Controlla il codice.";
-        resultBox.className = "verify-result result-error";
+        result.className = "res err";
+        result.textContent = "Nessun tesserino corrispondente. Controlla il codice.";
       }
     });
   </script>
 </body>
 </html>
-
